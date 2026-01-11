@@ -1,0 +1,1026 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AGN — Assistant de Génération de Notes</title>
+
+  <style>
+    :root {
+      --bg: #f3f2ee;
+      --card: #ffffff;
+      --text: #14201c;
+      --muted: #5a6661;
+      --border: rgba(20,32,28,0.18);
+
+      --primary: #2f7a67;
+      --primary-2: #255f51;
+      --accent: #b8924a;
+      --accent-2: #8f7238;
+
+      --shadow-soft: 0 2px 8px rgba(0,0,0,0.08);
+      --btn-bg: #f4f4f4;
+      --btn-border: rgba(20,32,28,0.25);
+      --btn-text: var(--text);
+      --focus: rgba(47, 122, 103, 0.35);
+
+      --disabled: rgba(90, 102, 97, 0.55);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f1413;
+      --card: #141b19;
+      --text: #e8f0ed;
+      --muted: #b3c0bb;
+      --border: rgba(232,240,237,0.18);
+
+      --primary: #43a089;
+      --primary-2: #2f7a67;
+      --accent: #d1ad61;
+      --accent-2: #b8924a;
+
+      --shadow-soft: 0 2px 10px rgba(0,0,0,0.35);
+      --btn-bg: rgba(232,240,237,0.06);
+      --btn-border: rgba(232,240,237,0.22);
+      --btn-text: var(--text);
+      --focus: rgba(67, 160, 137, 0.35);
+
+      --disabled: rgba(179, 192, 187, 0.55);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    }
+
+    .wrap { max-width: 1140px; margin: 0 auto; padding: 18px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    header.card { display: flex; gap: 12px; align-items: center; justify-content: space-between; }
+    .brand { display:flex; flex-direction: column; gap: 4px; }
+    h1 { margin: 0; font-size: 22px; letter-spacing: 0.2px; }
+    .sub { margin: 0; color: var(--muted); font-size: 13px; }
+    .small { font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+      align-items: start;
+    }
+
+    h2 { margin: 0 0 10px 0; font-size: 15px; }
+
+    .control { margin-bottom: 12px; }
+    .control label { display:block; font-weight: 650; margin-bottom: 6px; font-size: 13px; }
+
+    select, textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      background: var(--card);
+      color: var(--text);
+      font-size: 13px;
+      outline: none;
+    }
+    option { background: var(--card); color: var(--text); }
+
+    select:focus, textarea:focus, input[type="range"]:focus {
+      box-shadow: 0 0 0 4px var(--focus);
+    }
+
+    .range-block { padding: 8px 10px; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; }
+    .range-head { display:flex; gap:10px; align-items:center; justify-content: space-between; margin-bottom: 6px; }
+    .range-title { display:flex; gap:10px; align-items:center; font-size: 13px; font-weight: 650; }
+    .range-title input[type="checkbox"] { transform: translateY(1px); }
+
+    .range-row { display:flex; gap: 10px; align-items:center; }
+    .range-row input[type="range"] { flex: 1; }
+    .value { min-width: 320px; font-size: 12px; color: var(--muted); }
+
+    .range-block.is-disabled { opacity: 0.75; }
+    .range-block.is-disabled .range-title { color: var(--disabled); }
+    .range-block.is-disabled .value { color: var(--disabled); }
+
+    .radio-row { display:flex; gap: 14px; flex-wrap: wrap; font-size: 13px; }
+    .radio-row label { font-weight: 500; color: var(--text); }
+
+    .row { display:flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; align-items:center; }
+
+    .btn {
+      padding: 8px 11px;
+      border: 1px solid var(--btn-border);
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .btn-primary { border-color: transparent; background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-2); }
+    .btn-accent { border-color: transparent; background: var(--accent); color: #1c1a14; }
+    .btn-accent:hover { background: var(--accent-2); }
+
+    .status { margin: 10px 0 0 0; font-size: 12px; color: var(--muted); min-height: 16px; }
+
+    .preview {
+      min-height: 120px;
+      padding: 10px;
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      background: rgba(0,0,0,0.02);
+      white-space: pre-wrap;
+      color: var(--text);
+    }
+    [data-theme="dark"] .preview { background: rgba(255,255,255,0.03); }
+
+    textarea { min-height: 160px; resize: vertical; }
+
+    .pill {
+      display:inline-flex; align-items:center; gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .pill b { color: var(--text); font-weight: 650; }
+
+    .copy-row { display:flex; justify-content:flex-end; margin-top: 10px; }
+
+    .inline-check {
+      display:flex; align-items:center; gap: 8px;
+      font-size: 12px; color: var(--muted);
+      user-select: none;
+    }
+    .inline-check input { transform: translateY(1px); }
+
+    .right-topbar {
+      display:flex;
+      gap: 10px;
+      align-items: end;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+    }
+
+    .toggle {
+      display:flex; gap: 8px; align-items:center;
+      padding: 6px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      font-size: 12px;
+      color: var(--text);
+      height: 38px;
+      white-space: nowrap;
+    }
+    .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 0 3px var(--focus);
+    }
+
+    @media (max-width: 920px) {
+      .grid { grid-template-columns: 1fr; }
+      .value { min-width: 220px; }
+      header.card { flex-direction: column; align-items: flex-start; }
+      .right-topbar { justify-content: flex-start; }
+      .toggle { justify-content: center; }
+    }
+  
+      .range-flags{display:flex;gap:10px;align-items:center;font-size:12px;opacity:.9}
+      .mini-flag{display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none}
+      .mini-flag input{cursor:pointer}
+    </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="card">
+      <div class="brand">
+        <h1>AGN</h1>
+        <p class="sub">Assistant de génération de notes cliniques (hors ligne). Outil générique.</p>
+        <div class="small">Générez puis copiez/collez dans Word, dossier patient, formulaire, etc.</div>
+      </div>
+      <div></div>
+    </header>
+
+    <main class="grid">
+      <!-- LEFT -->
+      <section class="card">
+        <h2>Filtre</h2>
+        <div class="control">
+          <label for="domainSelect">Domaine</label>
+          <select id="domainSelect"></select>
+          <div class="small">Vide = tous les paramètres visibles</div>
+        </div>
+
+        <div class="row" style="margin-top: 4px;">
+          <span class="pill">Paramètres visibles: <b id="visibleCount">0</b></span>
+
+          <label class="inline-check" title="Ajoute le texte généré à la suite au lieu de remplacer">
+            <input id="appendMode" type="checkbox" />
+            Ajouter au texte
+          </label>
+        </div>
+
+        <h2 style="margin-top:14px;">Paramètres</h2>
+        <div id="controls"></div>
+
+        <div class="row">
+          <button id="btnPreview" class="btn btn-primary" type="button">Prévisualiser</button>
+          <button id="btnClear" class="btn" type="button">Effacer</button>
+        </div>
+
+        <p id="status" class="status"></p>
+      </section>
+
+      <!-- RIGHT -->
+      <section class="card">
+        <div class="right-topbar">
+          <button id="themeToggle" class="toggle" type="button" title="Basculer clair/sombre">
+            <span class="dot" aria-hidden="true"></span>
+            <span id="themeLabel">Mode sombre</span>
+          </button>
+        </div>
+
+        <h2>Texte généré</h2>
+        <div id="preview" class="preview" aria-label="Prévisualisation"></div>
+
+        <h2 style="margin-top:12px;">Zone de note (optionnel)</h2>
+        <textarea id="noteBox" placeholder="Vous pouvez ajuster le texte ici avant de copier..."></textarea>
+
+        <div class="copy-row">
+          <button id="btnCopy" class="btn btn-accent" type="button">Copier</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ========================= DATA ========================= -->
+
+  <script id="domains-json" type="application/json">
+[
+  "Perception / cognition (attention, orientation, sensations)",
+  "Douleur",
+  "Comportement face à la santé / Apprendre (sensibilisation à la santé, bien-être-confort)",
+  "Principes de vie (valeurs, croyances, autonomie)",
+  "Communiquer",
+  "Sécurité / protection (hygiène, état cutané, risque de chute, infection, circulation sanguine)",
+  "Mise en danger de soi / d'autrui (violence)",
+  "Perception de soi (peur, espoir, etc.)",
+  "Rôles sociaux (aidant naturel, relation familiales, rôles démontrés)",
+  "Se mobiliser/motricité",
+  "S'occuper / gérer le quotidien / potentiel d'énergie",
+  "Boire /Manger (aliments/liquides absorbés, digestion, métabolisme)",
+  "Dormir/Se reposer",
+  "Soins corporels / habillement",
+  "Respirer",
+  "Eliminer (fonctionnement du système urinaire/digestif)"
+]
+  </script>
+
+  <!-- Full parameters list (yours) -->
+  <script id="parameters-json" type="application/json">
+{
+  "gender": { "type": "radio", "label": "Sexe du patient", "values": ["M", "F"], "default": "M", "display": { "M": "Homme", "F": "Femme" } },
+
+  "cog_orientation": { "type":"range", "label":"Orientation spatio-temporelle", "min":0, "max":5, "default":1, "domain":"Perception / cognition (attention, orientation, sensations)" },
+  "cog_attention": { "type":"range", "label":"Attention / concentration", "min":0, "max":5, "default":1, "domain":"Perception / cognition (attention, orientation, sensations)" },
+  "cog_memoire": { "type":"range", "label":"Mémoire / oublis", "min":0, "max":5, "default":1, "domain":"Perception / cognition (attention, orientation, sensations)" },
+  "cog_jugement": { "type":"range", "label":"Jugement / prise de décision", "min":0, "max":5, "default":1, "domain":"Perception / cognition (attention, orientation, sensations)" },
+  "cog_sens": { "type":"range", "label":"Perception sensorielle (vue/ouïe)", "min":0, "max":5, "default":0, "domain":"Perception / cognition (attention, orientation, sensations)" },
+  "cog_comprehension": { "type":"range", "label":"Compréhension des situations", "min":0, "max":5, "default":1, "domain":"Perception / cognition (attention, orientation, sensations)" },
+
+  "douleur": { "type":"range", "label":"Douleur (intensité)", "min":0, "max":5, "default":1, "domain":"Douleur" },
+  "douleur_impact": { "type":"range", "label":"Douleur (impact fonctionnel)", "min":0, "max":5, "default":1, "domain":"Douleur" },
+  "douleur_traitement": { "type":"range", "label":"Besoin d’antalgiques / suivi", "min":0, "max":5, "default":1, "domain":"Douleur" },
+
+  "sante_observance": { "type":"range", "label":"Adhésion aux soins / consignes", "min":0, "max":5, "default":1, "domain":"Comportement face à la santé / Apprendre (sensibilisation à la santé, bien-être-confort)" },
+  "sante_education": { "type":"range", "label":"Besoin d’enseignement / compréhension", "min":0, "max":5, "default":1, "domain":"Comportement face à la santé / Apprendre (sensibilisation à la santé, bien-être-confort)" },
+  "sante_confort": { "type":"range", "label":"Bien-être / confort (mesures non médicamenteuses)", "min":0, "max":5, "default":1, "domain":"Comportement face à la santé / Apprendre (sensibilisation à la santé, bien-être-confort)" },
+
+  "valeurs_autonomie": { "type":"range", "label":"Autonomie décisionnelle", "min":0, "max":5, "default":1, "domain":"Principes de vie (valeurs, croyances, autonomie)" },
+  "valeurs_motivation": { "type":"range", "label":"Motivation / participation aux objectifs", "min":0, "max":5, "default":1, "domain":"Principes de vie (valeurs, croyances, autonomie)" },
+  "valeurs_acceptation": { "type":"range", "label":"Acceptation de l’aide (soins/AVQ)", "min":0, "max":5, "default":1, "domain":"Principes de vie (valeurs, croyances, autonomie)" },
+
+  "comm_comprehension": { "type":"range", "label":"Compréhension (consignes/échanges)", "min":0, "max":5, "default":1, "domain":"Communiquer" },
+  "comm_expression": { "type":"range", "label":"Expression (parole/gestes)", "min":0, "max":5, "default":1, "domain":"Communiquer" },
+  "comm_aides": { "type":"range", "label":"Besoin d’aides à la communication", "min":0, "max":5, "default":0, "domain":"Communiquer" },
+  "comm_langue": { "type":"range", "label":"Barrière de langue / compréhension culturelle", "min":0, "max":5, "default":0, "domain":"Communiquer" },
+
+  "secu_chute": { "type":"range", "label":"Risque de chute", "min":0, "max":5, "default":1, "domain":"Sécurité / protection (hygiène, état cutané, risque de chute, infection, circulation sanguine)" },
+  "secu_peau": { "type":"range", "label":"Intégrité cutanée / risque d’escarres", "min":0, "max":5, "default":1, "domain":"Sécurité / protection (hygiène, état cutané, risque de chute, infection, circulation sanguine)" },
+  "secu_infection": { "type":"range", "label":"Risque infectieux (surveillance)", "min":0, "max":5, "default":1, "domain":"Sécurité / protection (hygiène, état cutané, risque de chute, infection, circulation sanguine)" },
+  "secu_hygiene": { "type":"range", "label":"Hygiène (besoin de supervision)", "min":0, "max":5, "default":1, "domain":"Sécurité / protection (hygiène, état cutané, risque de chute, infection, circulation sanguine)" },
+  "secu_circulation": { "type":"range", "label":"Circulation / œdèmes (surveillance)", "min":0, "max":5, "default":0, "domain":"Sécurité / protection (hygiène, état cutané, risque de chute, infection, circulation sanguine)" },
+  "secu_medic": { "type":"range", "label":"Sécurité médicamenteuse / suivi", "min":0, "max":5, "default":0, "domain":"Sécurité / protection (hygiène, état cutané, risque de chute, infection, circulation sanguine)" },
+
+  "danger_agressivite": { "type":"range", "label":"Risque d’agressivité / conflit", "min":0, "max":5, "default":0, "domain":"Mise en danger de soi / d'autrui (violence)" },
+  "danger_impulsivite": { "type":"range", "label":"Impulsivité / comportements à risque", "min":0, "max":5, "default":0, "domain":"Mise en danger de soi / d'autrui (violence)" },
+  "danger_fugue": { "type":"range", "label":"Risque de fugue / errance", "min":0, "max":5, "default":0, "domain":"Mise en danger de soi / d'autrui (violence)" },
+
+  "soi_humeur": { "type":"range", "label":"Humeur (tristesse/irritabilité)", "min":0, "max":5, "default":1, "domain":"Perception de soi (peur, espoir, etc.)" },
+  "soi_anxiete": { "type":"range", "label":"Anxiété / inquiétude", "min":0, "max":5, "default":1, "domain":"Perception de soi (peur, espoir, etc.)" },
+  "soi_estime": { "type":"range", "label":"Estime de soi / confiance", "min":0, "max":5, "default":0, "domain":"Perception de soi (peur, espoir, etc.)" },
+
+  "social_reseau": { "type":"range", "label":"Soutien familial / réseau", "min":0, "max":5, "default":1, "domain":"Rôles sociaux (aidant naturel, relation familiales, rôles démontrés)" },
+  "social_participation": { "type":"range", "label":"Participation sociale / isolement", "min":0, "max":5, "default":1, "domain":"Rôles sociaux (aidant naturel, relation familiales, rôles démontrés)" },
+  "social_aidant": { "type":"range", "label":"Charge de l’aidant / coordination", "min":0, "max":5, "default":0, "domain":"Rôles sociaux (aidant naturel, relation familiales, rôles démontrés)" },
+
+  "mob_transferts": { "type":"range", "label":"Transferts (lit-fauteuil, lever)", "min":0, "max":5, "default":1, "domain":"Se mobiliser/motricité" },
+  "mob_marche": { "type":"range", "label":"Marche / déplacements", "min":0, "max":5, "default":1, "domain":"Se mobiliser/motricité" },
+  "mob_equilibre": { "type":"range", "label":"Équilibre / stabilité", "min":0, "max":5, "default":1, "domain":"Se mobiliser/motricité" },
+  "mob_aides": { "type":"range", "label":"Besoin d’aide technique (canne, rollator)", "min":0, "max":5, "default":0, "domain":"Se mobiliser/motricité" },
+  "mob_escalier": { "type":"range", "label":"Escaliers / franchissements", "min":0, "max":5, "default":0, "domain":"Se mobiliser/motricité" },
+  "mob_endurance": { "type":"range", "label":"Tolérance à l’effort / essoufflement à la marche", "min":0, "max":5, "default":0, "domain":"Se mobiliser/motricité" },
+
+  "energie_fatigue": { "type":"range", "label":"Fatigue / endurance", "min":0, "max":5, "default":1, "domain":"S'occuper / gérer le quotidien / potentiel d'énergie" },
+  "activites_quot": { "type":"range", "label":"Activités quotidiennes (organisation)", "min":0, "max":5, "default":1, "domain":"S'occuper / gérer le quotidien / potentiel d'énergie" },
+  "gestion_taches": { "type":"range", "label":"Gestion tâches simples (repères, routine)", "min":0, "max":5, "default":1, "domain":"S'occuper / gérer le quotidien / potentiel d'énergie" },
+
+  "alim_appetit": { "type":"range", "label":"Appétit / prises alimentaires", "min":0, "max":5, "default":1, "domain":"Boire /Manger (aliments/liquides absorbés, digestion, métabolisme)" },
+  "alim_hydratation": { "type":"range", "label":"Hydratation / surveillance", "min":0, "max":5, "default":1, "domain":"Boire /Manger (aliments/liquides absorbés, digestion, métabolisme)" },
+  "alim_deglutition": { "type":"range", "label":"Déglutition / risque de fausse route", "min":0, "max":5, "default":0, "domain":"Boire /Manger (aliments/liquides absorbés, digestion, métabolisme)" },
+  "alim_aide": { "type":"range", "label":"Aide au repas (coupe, stimulation, assistance)", "min":0, "max":5, "default":1, "domain":"Boire /Manger (aliments/liquides absorbés, digestion, métabolisme)" },
+  "alim_regime": { "type":"range", "label":"Régime / consignes alimentaires", "min":0, "max":5, "default":0, "domain":"Boire /Manger (aliments/liquides absorbés, digestion, métabolisme)" },
+  "alim_digestif": { "type":"range", "label":"Inconfort digestif / nausées", "min":0, "max":5, "default":0, "domain":"Boire /Manger (aliments/liquides absorbés, digestion, métabolisme)" },
+
+  "sommeil_qualite": { "type":"range", "label":"Qualité du sommeil", "min":0, "max":5, "default":1, "domain":"Dormir/Se reposer" },
+  "sommeil_reveils": { "type":"range", "label":"Réveils nocturnes / agitation", "min":0, "max":5, "default":1, "domain":"Dormir/Se reposer" },
+  "sommeil_sieste": { "type":"range", "label":"Somnolence diurne / siestes", "min":0, "max":5, "default":0, "domain":"Dormir/Se reposer" },
+
+  "avq_toilette": { "type":"range", "label":"Toilette / hygiène", "min":0, "max":5, "default":1, "domain":"Soins corporels / habillement" },
+  "avq_habillage": { "type":"range", "label":"Habillage", "min":0, "max":5, "default":1, "domain":"Soins corporels / habillement" },
+  "avq_soins": { "type":"range", "label":"Soins corporels spécifiques (peau, ongles)", "min":0, "max":5, "default":0, "domain":"Soins corporels / habillement" },
+  "avq_transferts_wc": { "type":"range", "label":"Aller aux WC / gestion toilettes", "min":0, "max":5, "default":1, "domain":"Soins corporels / habillement" },
+
+  "resp_dyspnee": { "type":"range", "label":"Dyspnée / essoufflement", "min":0, "max":5, "default":0, "domain":"Respirer" },
+  "resp_oxygeno": { "type":"range", "label":"Besoin d’oxygène / surveillance", "min":0, "max":5, "default":0, "domain":"Respirer" },
+  "resp_toux": { "type":"range", "label":"Toux / encombrement", "min":0, "max":5, "default":0, "domain":"Respirer" },
+
+  "elim_urinaire": { "type":"range", "label":"Élimination urinaire (continence)", "min":0, "max":5, "default":1, "domain":"Eliminer (fonctionnement du système urinaire/digestif)" },
+  "elim_transit": { "type":"range", "label":"Transit / constipation", "min":0, "max":5, "default":1, "domain":"Eliminer (fonctionnement du système urinaire/digestif)" },
+  "elim_surv": { "type":"range", "label":"Surveillance (diurèse, selles)", "min":0, "max":5, "default":0, "domain":"Eliminer (fonctionnement du système urinaire/digestif)" },
+  "elim_aide": { "type":"range", "label":"Aide nécessaire (protections, changes)", "min":0, "max":5, "default":1, "domain":"Eliminer (fonctionnement du système urinaire/digestif)" }
+}
+  </script>
+
+  <!-- Keep your phrases-json; you can extend later -->
+  <script id="phrases-json" type="application/json">
+{
+  "cog_orientation": {
+    "M": ["orientation conservée","désorientation légère par moments","désorientation modérée (rappels réguliers)","désorientation marquée (guidance fréquente)","désorientation importante (guidance constante)","désorientation majeure (risque d’errance/confusion)"],
+    "F": ["orientation conservée","désorientation légère par moments","désorientation modérée (rappels réguliers)","désorientation marquée (guidance fréquente)","désorientation importante (guidance constante)","désorientation majeure (risque d’errance/confusion)"]
+  },
+  "douleur": {
+    "M": ["douleurs absentes ou non rapportées","douleurs légères","douleurs modérées (évaluation régulière)","douleurs importantes (antalgiques réguliers)","douleurs très importantes (mobilisation/sommeil impactés)","douleurs quasi permanentes (difficiles à soulager)"],
+    "F": ["douleurs absentes ou non rapportées","douleurs légères","douleurs modérées (évaluation régulière)","douleurs importantes (antalgiques réguliers)","douleurs très importantes (mobilisation/sommeil impactés)","douleurs quasi permanentes (difficiles à soulager)"]
+  }
+}
+  </script>
+
+  <script id="rules-json" type="application/json">
+{}
+  </script>
+
+  <!-- ========================= APP LOGIC ========================= -->
+  <script>
+  // Global UI state (shared across functions)
+  var stateValues = {};
+  var stateEnabled = {};
+  var stateTwoPerson = {};
+
+    (function () {
+      function $(id) { return document.getElementById(id); }
+      function setStatus(msg) { $("status").textContent = msg || ""; }
+      function setVisibleCount(n) { $("visibleCount").textContent = String(n); }
+
+      // Robust JSON reader: supports /* */ and // comments + trailing commas
+      function readJson(scriptId) {
+        var el = $(scriptId);
+        if (!el) throw new Error("Missing JSON script tag: " + scriptId);
+
+        var txt = el.textContent || "";
+        txt = txt.replace(/^\uFEFF/, "");                 // BOM
+        txt = txt.replace(/\/\*[\s\S]*?\*\//g, "");       // /* ... */
+        txt = txt.replace(/^\s*\/\/.*$/gm, "");           // // ...
+        txt = txt.replace(/,\s*([}\]])/g, "$1");          // trailing commas
+
+        return JSON.parse(txt);
+      }
+      function readJsonArray(scriptId) {
+        var v = readJson(scriptId);
+        if (!Array.isArray(v)) throw new Error(scriptId + " must be an array");
+        return v;
+      }
+
+      function normalizeDomain(s) {
+        if (!s) return "";
+        return String(s).replace(/\u2019/g, "'").replace(/\s+/g, " ").trim();
+      }
+      function cap(s) {
+        if (!s) return s;
+        return s.charAt(0).toUpperCase() + s.slice(1);
+      }
+
+      function shouldInclude(rules, paramId, level) {
+        var rule = rules ? rules[paramId] : null;
+        if (!rule) return true;
+        if (typeof rule.include_if_level_at_least === "number") return level >= rule.include_if_level_at_least;
+        return true;
+      }
+
+      function inferSeverity(levels) {
+        if (!levels || !levels.length) return { avg: 0, max: 0, band: "low" };
+        var sum = 0, max = 0;
+        for (var i = 0; i < levels.length; i++) {
+          sum += levels[i];
+          if (levels[i] > max) max = levels[i];
+        }
+        var avg = sum / levels.length;
+        var score = (avg * 0.55) + (max * 0.45);
+        var band = "low";
+        if (score >= 3.8) band = "high";
+        else if (score >= 2.2) band = "moderate";
+        return { avg: avg, max: max, band: band };
+      }
+
+      // -------- Natural intros (no "éléments suivants") --------
+      function domainIntro(domain, gender) {
+        var patientLower = (gender === "F") ? "la patiente" : "le patient";
+        var dom = normalizeDomain(domain);
+
+        // IMPORTANT: for Douleur we intentionally DO NOT mention "douleur" here to avoid repetition
+        if (dom === normalizeDomain("Douleur")) {
+          return (gender === "F") ? "La patiente présente" : "Le patient présente";
+        }
+
+        var map = {};
+        map[normalizeDomain("Perception / cognition (attention, orientation, sensations)")] =
+          "Sur le plan cognitif, " + patientLower + " présente";
+        map[normalizeDomain("Comportement face à la santé / Apprendre (sensibilisation à la santé, bien-être-confort)")] =
+          "Concernant l’adhésion et le confort, " + patientLower + " présente";
+        map[normalizeDomain("Principes de vie (valeurs, croyances, autonomie)")] =
+          "Sur le plan de l’autonomie et de la motivation, " + patientLower + " présente";
+        map[normalizeDomain("Communiquer")] =
+          "Sur le plan de la communication, " + patientLower + " présente";
+        map[normalizeDomain("Sécurité / protection (hygiène, état cutané, risque de chute, infection, circulation sanguine)")] =
+          "Sur le plan de la sécurité et de la prévention, " + patientLower + " présente";
+        map[normalizeDomain("Mise en danger de soi / d'autrui (violence)")] =
+          "Concernant les comportements à risque, " + patientLower + " présente";
+        map[normalizeDomain("Perception de soi (peur, espoir, etc.)")] =
+          "Sur le plan psychique, " + patientLower + " présente";
+        map[normalizeDomain("Rôles sociaux (aidant naturel, relation familiales, rôles démontrés)")] =
+          "Sur le plan social, " + patientLower + " présente";
+        map[normalizeDomain("Se mobiliser/motricité")] =
+          "Sur le plan de la mobilité, " + patientLower + " présente";
+        map[normalizeDomain("S'occuper / gérer le quotidien / potentiel d'énergie")] =
+          "Concernant l’énergie et le quotidien, " + patientLower + " présente";
+        map[normalizeDomain("Boire /Manger (aliments/liquides absorbés, digestion, métabolisme)")] =
+          "Au niveau de l’alimentation et de l’hydratation, " + patientLower + " présente";
+        map[normalizeDomain("Dormir/Se reposer")] =
+          "Concernant le sommeil, " + patientLower + " présente";
+        map[normalizeDomain("Soins corporels / habillement")] =
+          "Concernant les AVQ, " + patientLower + " présente";
+        map[normalizeDomain("Respirer")] =
+          "Sur le plan respiratoire, " + patientLower + " présente";
+        map[normalizeDomain("Eliminer (fonctionnement du système urinaire/digestif)")] =
+          "Concernant l’élimination, " + patientLower + " présente";
+
+        return map[dom] || ("Concernant " + domain.toLowerCase() + ", " + patientLower + " présente");
+      }
+
+      // -------- One action sentence per domain (no repetitive boilerplate per slider) --------
+      function domainActionSentence(domain, gender, sev) {
+        var dom = normalizeDomain(domain);
+
+        var low = "Surveillance simple, en favorisant l’autonomie.";
+        var mid = "Une supervision régulière est mise en place, avec adaptations et transmissions si évolution.";
+        var high = "Une aide régulière est nécessaire, avec sécurisation et prévention des risques.";
+
+        var extra = "";
+
+        if (dom === normalizeDomain("Douleur")) {
+          // Avoid repeating "douleur" here too
+          extra = " Réévaluation régulière et mesures de confort adaptées.";
+        } else if (dom === normalizeDomain("Se mobiliser/motricité")) {
+          extra = " Aide aux transferts/déplacements selon tolérance, avec sécurisation de l’environnement.";
+        } else if (dom === normalizeDomain("Boire /Manger (aliments/liquides absorbés, digestion, métabolisme)")) {
+          extra = " Surveillance des apports et stimulation si besoin.";
+        } else if (dom === normalizeDomain("Sécurité / protection (hygiène, état cutané, risque de chute, infection, circulation sanguine)")) {
+          extra = " Mesures de prévention et surveillance ciblée.";
+        } else if (dom === normalizeDomain("Soins corporels / habillement")) {
+          extra = " Aide progressive aux AVQ, en respectant le rythme.";
+        } else if (dom === normalizeDomain("Perception de soi (peur, espoir, etc.)")) {
+          extra = " Soutien relationnel et réassurance selon les besoins.";
+        } else if (dom === normalizeDomain("Communiquer")) {
+          extra = " Consignes courtes, reformulation et supports si nécessaire.";
+        }
+
+        if (sev.band === "low") return low;
+        if (sev.band === "moderate") return mid + extra;
+        return high + extra;
+      }
+
+      // -------- Slider phrase -> CLAUSE (not full sentence), PoC style --------
+      function getClause(phrases, parameters, paramId, gender, level, twoPerson) {
+        var def = parameters && parameters[paramId];
+        var label = (def && def.label) ? def.label : paramId;
+        var labelShort = String(label).replace(/\s*\([^\)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
+        var dom = def && def.domain ? def.domain : "";
+
+        var lvl = Math.max(0, Math.min(5, Number(level) || 0));
+
+        var raw = "";
+        if (phrases && phrases[paramId] && phrases[paramId][gender]) {
+          var list = phrases[paramId][gender];
+          if (Array.isArray(list) && list.length) {
+            var idx = Math.min(lvl, list.length - 1);
+            raw = String(list[idx] || "").trim();
+          }
+        }
+
+        // If raw exists, adapt it into a clause
+        if (raw) {
+          var r = raw.replace(/[.]+$/g, "").trim();
+
+          // Remove any leading "label :" if it exists (older templates)
+          var lowLabel = label.toLowerCase();
+          if (r.toLowerCase().indexOf(lowLabel + " :") === 0) {
+            r = r.slice((lowLabel + " :").length).trim();
+          }
+
+          // If the clause does not already mention the target (and it is not pain), append a natural reference.
+          var isPain = (dom === "Douleur") || /\bdouleur\b/i.test(label);
+          var lowShort = labelShort.toLowerCase();
+          if (!isPain && lowShort && r.toLowerCase().indexOf(lowShort) === -1) {
+            r = r.replace(/\s+$/g, "") + " concernant " + lowShort;
+          }
+
+          // Fix for Douleur repetition: ensure clause is "des douleurs ..." and intro does not mention douleur
+          if (normalizeDomain(dom) === normalizeDomain("Douleur")) {
+            var low = r.toLowerCase();
+            if (low.startsWith("douleurs ")) r = "des " + r;
+            else if (low.startsWith("douleur ")) r = "une " + r;
+          }
+
+          if (twoPerson) r += ", avec l’aide de deux personnes";
+          return r;
+        }
+
+        // Fallback clause (longer / clearer)
+        var fb = [
+          "aucune difficulté notable à ce stade",
+          "une difficulté légère, avec impact limité sur le quotidien",
+          "une difficulté modérée, nécessitant une surveillance et des ajustements ponctuels",
+          "une difficulté importante, avec besoin d’aide régulière",
+          "une difficulté très importante, avec un impact significatif sur l’autonomie",
+          "une difficulté majeure, avec dépendance élevée et besoins constants"
+        ];
+        // Use label in fallback to stay understandable
+        var out = fb[lvl];
+
+        // Do not display the slider label/value; keep it natural.
+        var isPain = (dom === "Douleur") || /\bdouleur\b/i.test(label);
+        if (!isPain) out += " concernant " + labelShort.toLowerCase();
+
+        if (twoPerson) out += ", avec l’aide de deux personnes";
+        return out;
+      }
+
+      function buildDomainParagraph(domain, clauses, gender, sev) {
+        if (!clauses.length) return "";
+
+        // Clean and join as PoC-like flow
+        var cleaned = [];
+        for (var i = 0; i < clauses.length; i++) {
+          var s = String(clauses[i] || "").trim();
+          if (!s) continue;
+
+          s = s.replace(/[.]+$/g, "").trim();
+
+          // Lowercase first letter for mid-clause readability
+          s = s.charAt(0).toLowerCase() + s.slice(1);
+
+          cleaned.push(s);
+        }
+        if (!cleaned.length) return "";
+
+        var intro = domainIntro(domain, gender); // ends with "présente"
+        var action = domainActionSentence(domain, gender, sev);
+
+        // Example: "Sur le plan de la mobilité, le patient présente une mobilité réduite, ... . Une supervision..."
+        var paragraph = intro + " " + cleaned.join(", ") + ".";
+        if (action) paragraph += " " + action;
+
+        return cap(paragraph);
+      }
+
+      function generateTextNatural(stateForGen, data, options) {
+        var gender = stateForGen.gender || "M";
+        var selectedDomain = options.selectedDomain || "";
+
+        var byDomain = {};
+        var levelByDomain = {};
+
+        for (var pid in stateForGen) {
+          if (!stateForGen.hasOwnProperty(pid)) continue;
+          if (pid === "gender") continue;
+
+          var lvl = stateForGen[pid];
+          if (typeof lvl !== "number") continue;
+
+          var def = data.parameters[pid];
+          if (!def || !def.domain) continue;
+
+          if (!shouldInclude(data.rules, pid, lvl)) continue;
+
+          var clause = getClause(data.phrases, data.parameters, pid, gender, lvl, options.twoPerson && options.twoPerson[pid]);
+          if (!clause) continue;
+
+          var dom = def.domain;
+          if (!byDomain[dom]) byDomain[dom] = [];
+          if (!levelByDomain[dom]) levelByDomain[dom] = [];
+          byDomain[dom].push(clause);
+          levelByDomain[dom].push(lvl);
+        }
+
+        var domainOrder = selectedDomain ? [selectedDomain] : data.domains.slice();
+        var paragraphs = [];
+
+        for (var i = 0; i < domainOrder.length; i++) {
+          var dom = domainOrder[i];
+          var items = byDomain[dom] || [];
+          if (!items.length) continue;
+
+          var sev = inferSeverity(levelByDomain[dom] || []);
+          var p = buildDomainParagraph(dom, items, gender, sev);
+          paragraphs.push(p.trim());
+        }
+
+        return paragraphs.join("\n\n");
+      }
+
+      var visibleParamIds = [];
+      var selectedDomain = "";
+
+      function buildDomainSelect(domains, onChange) {
+        var select = $("domainSelect");
+        select.innerHTML = "";
+
+        var optAll = document.createElement("option");
+        optAll.value = "";
+        optAll.textContent = "— Tous les domaines —";
+        select.appendChild(optAll);
+
+        for (var i = 0; i < domains.length; i++) {
+          var opt = document.createElement("option");
+          opt.value = domains[i];
+          opt.textContent = domains[i];
+          select.appendChild(opt);
+        }
+
+        select.value = "";
+        select.addEventListener("change", function () { onChange(select.value); });
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("agn_theme", theme);
+        $("themeLabel").textContent = (theme === "dark") ? "Mode clair" : "Mode sombre";
+      }
+
+      function renderControls(parameters, phrases, stateValues, stateEnabled, domain) {
+        var controls = $("controls");
+        controls.innerHTML = "";
+        visibleParamIds = [];
+
+        var domNorm = normalizeDomain(domain);
+        function currentGender() { return stateValues.gender || "M"; }
+
+        var visibleRanges = 0;
+        var keys = Object.keys(parameters || {});
+        for (var idx = 0; idx < keys.length; idx++) {
+          var paramId = keys[idx];
+          var def = parameters[paramId];
+          if (!def || typeof def !== "object") continue;
+
+          var isGender = (paramId === "gender");
+          if (!isGender && domNorm) {
+            var defDom = normalizeDomain(def.domain || "");
+            if (defDom !== domNorm) continue;
+          }
+
+          if (def.type === "radio") {
+            var wrapper = document.createElement("div");
+            wrapper.className = "control";
+
+            var label = document.createElement("label");
+            label.textContent = def.label || paramId;
+            wrapper.appendChild(label);
+
+            var row = document.createElement("div");
+            row.className = "radio-row";
+
+            for (var r = 0; r < def.values.length; r++) {
+              var v = def.values[r];
+
+              var lab = document.createElement("label");
+              var input = document.createElement("input");
+              input.type = "radio";
+              input.name = paramId;
+              input.value = v;
+              input.checked = (v === stateValues[paramId]);
+
+              input.addEventListener("change", (function (pid, val) {
+                return function () {
+                  stateValues[pid] = val;
+
+                  // refresh helper texts (gender changed)
+                  var inputs = controls.querySelectorAll('input[type="range"]');
+                  for (var i = 0; i < inputs.length; i++) {
+                    var p = inputs[i].dataset.paramId;
+                    var lvl = Number(inputs[i].value);
+                    var defp = parameters[p];
+                    var domp = defp && defp.domain ? defp.domain : "";
+                    var txt = getClause(phrases, parameters, p, currentGender(), lvl, stateTwoPerson[p] === true);
+                    if (inputs[i]._valueEl) inputs[i]._valueEl.textContent = lvl + " – " + txt;
+                  }
+                };
+              })(paramId, v));
+
+              var display = (def.display && def.display[v]) ? def.display[v] : v;
+              lab.appendChild(input);
+              lab.appendChild(document.createTextNode(" " + display));
+              row.appendChild(lab);
+            }
+
+            wrapper.appendChild(row);
+            controls.appendChild(wrapper);
+            continue;
+          }
+
+          if (def.type === "range") {
+            visibleParamIds.push(paramId);
+            visibleRanges++;
+
+            var block = document.createElement("div");
+            block.className = "range-block";
+
+            var head = document.createElement("div");
+            head.className = "range-head";
+
+            var titleWrap = document.createElement("div");
+            titleWrap.className = "range-title";
+
+            var enable = document.createElement("input");
+            enable.type = "checkbox";
+            enable.checked = (stateEnabled[paramId] !== false);
+            enable.title = "Inclure/exclure ce paramètre";
+
+            var title = document.createElement("span");
+            title.textContent = def.label || paramId;
+
+            titleWrap.appendChild(enable);
+            titleWrap.appendChild(title);
+
+            var flags = document.createElement("div");
+            flags.className = "range-flags";
+
+            var twoLab = document.createElement("label");
+            twoLab.className = "mini-flag";
+            twoLab.title = "Aide / intervention à deux personnes";
+            var twoCb = document.createElement("input");
+            twoCb.type = "checkbox";
+            twoCb.checked = (stateTwoPerson[paramId] === true);
+            twoLab.appendChild(twoCb);
+            twoLab.appendChild(document.createTextNode("2 pers."));
+            flags.appendChild(twoLab);
+
+            head.appendChild(titleWrap);
+            head.appendChild(flags);
+            block.appendChild(head);
+
+            var rangeRow = document.createElement("div");
+            rangeRow.className = "range-row";
+
+            var inputRange = document.createElement("input");
+            inputRange.type = "range";
+            inputRange.min = def.min;
+            inputRange.max = def.max;
+            inputRange.value = stateValues[paramId];
+            inputRange.dataset.paramId = paramId;
+
+            var value = document.createElement("div");
+            value.className = "value";
+            inputRange._valueEl = value;
+
+            function updateFromInput(inputEl) {
+              var pid = inputEl.dataset.paramId;
+              var lvl = Number(inputEl.value);
+              stateValues[pid] = lvl;
+
+              var isTwo = (stateTwoPerson[pid] === true);
+              var txt = getClause(phrases, parameters, pid, currentGender(), lvl, isTwo);
+              if (inputEl._valueEl) inputEl._valueEl.textContent = lvl + " – " + txt + (isTwo ? " (2 pers.)" : "");
+            }
+
+            inputRange.addEventListener("input", function () { updateFromInput(this); });
+            updateFromInput(inputRange);
+
+            function applyEnabledUI(pid) {
+              var enabled = (stateEnabled[pid] !== false);
+              inputRange.disabled = !enabled;
+              block.classList.toggle("is-disabled", !enabled);
+              if (!enabled && inputRange._valueEl) {
+                var lvl = Number(inputRange.value);
+                var txt = getClause(phrases, parameters, pid, currentGender(), lvl, stateTwoPerson[pid] === true);
+                inputRange._valueEl.textContent = lvl + " – " + txt + " (désactivé)";
+              } else {
+                updateFromInput(inputRange);
+              }
+            }
+
+            enable.addEventListener("change", (function(pid){
+              return function(){
+                stateEnabled[pid] = this.checked;
+                applyEnabledUI(pid);
+              };
+            })(paramId));
+
+            twoCb.addEventListener("change", (function(pid){
+              return function(){
+                stateTwoPerson[pid] = this.checked;
+                updateFromInput(inputRange);
+              };
+            })(paramId));
+
+            // extend applyEnabledUI to also disable the 2-pers checkbox when slider is disabled
+            var _applyEnabledUI = applyEnabledUI;
+            applyEnabledUI = function(pid){
+              _applyEnabledUI(pid);
+              var enabled = (stateEnabled[pid] !== false);
+              if (pid === paramId) twoCb.disabled = !enabled;
+            };
+
+            applyEnabledUI(paramId);
+
+            rangeRow.appendChild(inputRange);
+            rangeRow.appendChild(value);
+            block.appendChild(rangeRow);
+
+            controls.appendChild(block);
+          }
+        }
+
+        setVisibleCount(visibleRanges);
+      }
+
+      async function copyToClipboard(text, textareaFallback) {
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(text);
+            return true;
+          }
+        } catch (e) { /* fallback */ }
+
+        try {
+          textareaFallback.focus();
+          textareaFallback.select();
+          var ok = !!document.execCommand("copy");
+          try {
+            var len = (textareaFallback.value || "").length;
+            textareaFallback.setSelectionRange(len, len);
+          } catch (eSel) { /* ignore */ }
+          return ok;
+} catch (e2) {
+          return false;
+        }
+      }
+
+      function main() {
+        try {
+          setStatus("Chargement…");
+
+          var savedTheme = localStorage.getItem("agn_theme") || "dark";
+          applyTheme(savedTheme);
+          $("themeToggle").addEventListener("click", function () {
+            var current = document.documentElement.getAttribute("data-theme") || "light";
+            applyTheme(current === "dark" ? "light" : "dark");
+          });
+
+          // Append OFF by default (persisted)
+          var appendSaved = localStorage.getItem("agn_append");
+          $("appendMode").checked = (appendSaved === "1");
+          $("appendMode").addEventListener("change", function(){
+            localStorage.setItem("agn_append", this.checked ? "1" : "0");
+          });
+
+          var domains = readJsonArray("domains-json");
+          var parameters = readJson("parameters-json");
+          var phrases = readJson("phrases-json");
+          var rules = readJson("rules-json");
+
+          var data = { domains: domains, parameters: parameters, phrases: phrases, rules: rules };
+
+          stateValues = {};
+          stateEnabled = {};
+          stateTwoPerson = {};
+
+          var pkeys = Object.keys(parameters || {});
+          for (var i = 0; i < pkeys.length; i++) {
+            var k = pkeys[i];
+            stateValues[k] = parameters[k].default;
+            if (parameters[k].type === "range") {
+              stateEnabled[k] = true;
+              stateTwoPerson[k] = false;
+            }
+          }
+
+          var previewEl = $("preview");
+          var noteBox = $("noteBox");
+
+          function stateForGeneration() {
+            var st = { gender: stateValues.gender };
+            for (var i = 0; i < visibleParamIds.length; i++) {
+              var pid = visibleParamIds[i];
+              if (stateEnabled[pid] === false) continue;
+              st[pid] = stateValues[pid];
+            }
+            return st;
+          }
+
+          function doPreview() {
+            var txt = generateTextNatural(
+              stateForGeneration(),
+              data,
+              { selectedDomain: selectedDomain, twoPerson: stateTwoPerson }
+            );
+
+            previewEl.textContent = txt;
+
+            var append = $("appendMode").checked;
+            if (!append) {
+              noteBox.value = txt;
+            } else {
+              var base = (noteBox.value || "").trim();
+              noteBox.value = base ? (base + "\n\n" + txt) : txt;
+            }
+
+            setStatus("Texte généré" + (selectedDomain ? (" — filtre: " + selectedDomain) : "") + ".");
+            return txt;
+          }
+
+          buildDomainSelect(domains, function (newDomain) {
+            selectedDomain = newDomain;
+            renderControls(parameters, phrases, stateValues, stateEnabled, selectedDomain);
+            setStatus(selectedDomain ? ("Filtre: " + selectedDomain) : "Tous les domaines.");
+            previewEl.textContent = "";
+          });
+
+          renderControls(parameters, phrases, stateValues, stateEnabled, selectedDomain);
+
+          $("btnPreview").addEventListener("click", function () { doPreview(); });
+
+          $("btnClear").addEventListener("click", function () {
+            previewEl.textContent = "";
+            noteBox.value = "";
+            setStatus("Effacé.");
+          });
+
+          $("btnCopy").addEventListener("click", async function () {
+            var text = (noteBox.value || "").trim();
+            if (!text) {
+              doPreview();
+              text = (noteBox.value || "").trim();
+            }
+            var ok = await copyToClipboard(text, noteBox);
+            setStatus(ok ? "Copié dans le presse-papiers ✅" : "Impossible de copier (politique de sécurité) ❌");
+          });
+
+          setStatus("Prêt.");
+        } catch (err) {
+          console.error(err);
+          setStatus("Erreur: " + err.message);
+        }
+      }
+
+      if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", main);
+      else main();
+    })();
+  </script>
+</body>
+</html>
