@@ -380,16 +380,1144 @@
 
   <!-- Keep your phrases-json; you can extend later -->
   <script id="phrases-json" type="application/json">
+
 {
   "cog_orientation": {
-    "M": ["orientation conservée","désorientation légère par moments","désorientation modérée (rappels réguliers)","désorientation marquée (guidance fréquente)","désorientation importante (guidance constante)","désorientation majeure (risque d’errance/confusion)"],
-    "F": ["orientation conservée","désorientation légère par moments","désorientation modérée (rappels réguliers)","désorientation marquée (guidance fréquente)","désorientation importante (guidance constante)","désorientation majeure (risque d’errance/confusion)"]
+    "M": [
+      "Orientation spatio-temporelle préservée",
+      "Orientation spatio-temporelle globalement adéquate, avec rares confusions",
+      "Orientation spatio-temporelle fluctuante, avec besoin de rappels ponctuels",
+      "Orientation spatio-temporelle altérée, nécessitant un réajustement régulier",
+      "Orientation spatio-temporelle très limitée, avec besoin de guidage rapproché",
+      "Orientation spatio-temporelle fortement altérée, avec réorientation quasi constante"
+    ],
+    "F": [
+      "Orientation spatio-temporelle préservée",
+      "Orientation spatio-temporelle globalement adéquate, avec rares confusions",
+      "Orientation spatio-temporelle fluctuante, avec besoin de rappels ponctuels",
+      "Orientation spatio-temporelle altérée, nécessitant un réajustement régulier",
+      "Orientation spatio-temporelle très limitée, avec besoin de guidage rapproché",
+      "Orientation spatio-temporelle fortement altérée, avec réorientation quasi constante"
+    ]
+  },
+  "cog_attention": {
+    "M": [
+      "Attention / concentration préservée",
+      "Attention / concentration globalement adéquate, avec une fatigabilité légère",
+      "Attention / concentration fluctuante, avec relances ponctuelles nécessaires",
+      "Attention / concentration réduite, avec besoin de guidage fréquent",
+      "Attention / concentration très limitée, avec supervision étroite lors des activités",
+      "Attention / concentration fortement altérée, nécessitant un accompagnement constant"
+    ],
+    "F": [
+      "Attention / concentration préservée",
+      "Attention / concentration globalement adéquate, avec une fatigabilité légère",
+      "Attention / concentration fluctuante, avec relances ponctuelles nécessaires",
+      "Attention / concentration réduite, avec besoin de guidage fréquent",
+      "Attention / concentration très limitée, avec supervision étroite lors des activités",
+      "Attention / concentration fortement altérée, nécessitant un accompagnement constant"
+    ]
+  },
+  "cog_memoire": {
+    "M": [
+      "Mémoire / oublis sans élément marquant",
+      "Mémoire / oublis occasionnels, sans retentissement majeur",
+      "Mémoire / oublis fréquents, avec besoin de rappels",
+      "Mémoire / oublis répétés, nécessitant des repères et une structure",
+      "Mémoire / oublis très présents, avec besoin d’aide pour se repérer au quotidien",
+      "Mémoire / oublis majeurs, avec dépendance importante aux repères externes"
+    ],
+    "F": [
+      "Mémoire / oublis sans élément marquant",
+      "Mémoire / oublis occasionnels, sans retentissement majeur",
+      "Mémoire / oublis fréquents, avec besoin de rappels",
+      "Mémoire / oublis répétés, nécessitant des repères et une structure",
+      "Mémoire / oublis très présents, avec besoin d’aide pour se repérer au quotidien",
+      "Mémoire / oublis majeurs, avec dépendance importante aux repères externes"
+    ]
+  },
+  "cog_jugement": {
+    "M": [
+      "Jugement / prise de décision adaptés",
+      "Jugement / prise de décision globalement cohérents, avec besoin de clarification ponctuelle",
+      "Jugement / prise de décision hésitants, avec guidance ponctuelle",
+      "Jugement / prise de décision altérés, nécessitant un encadrement régulier",
+      "Jugement / prise de décision très limités, avec décisions à sécuriser systématiquement",
+      "Jugement / prise de décision fortement compromis, nécessitant un encadrement constant"
+    ],
+    "F": [
+      "Jugement / prise de décision adaptés",
+      "Jugement / prise de décision globalement cohérents, avec besoin de clarification ponctuelle",
+      "Jugement / prise de décision hésitants, avec guidance ponctuelle",
+      "Jugement / prise de décision altérés, nécessitant un encadrement régulier",
+      "Jugement / prise de décision très limités, avec décisions à sécuriser systématiquement",
+      "Jugement / prise de décision fortement compromis, nécessitant un encadrement constant"
+    ]
+  },
+  "cog_sens": {
+    "M": [
+      "Perception sensorielle (vue/ouïe) fonctionnelle",
+      "Perception sensorielle (vue/ouïe) légèrement diminuée, avec compensation efficace",
+      "Perception sensorielle (vue/ouïe) diminuée, avec besoin d’adaptations",
+      "Perception sensorielle (vue/ouïe) nettement diminuée, avec impacts sur les échanges et activités",
+      "Perception sensorielle (vue/ouïe) très réduite, nécessitant des stratégies de communication adaptées",
+      "Perception sensorielle (vue/ouïe) fortement déficitaire, avec besoin d’un accompagnement étroit"
+    ],
+    "F": [
+      "Perception sensorielle (vue/ouïe) fonctionnelle",
+      "Perception sensorielle (vue/ouïe) légèrement diminuée, avec compensation efficace",
+      "Perception sensorielle (vue/ouïe) diminuée, avec besoin d’adaptations",
+      "Perception sensorielle (vue/ouïe) nettement diminuée, avec impacts sur les échanges et activités",
+      "Perception sensorielle (vue/ouïe) très réduite, nécessitant des stratégies de communication adaptées",
+      "Perception sensorielle (vue/ouïe) fortement déficitaire, avec besoin d’un accompagnement étroit"
+    ]
+  },
+  "cog_comprehension": {
+    "M": [
+      "Compréhension des situations adéquate",
+      "Compréhension des situations globalement bonne, avec explications simples nécessaires",
+      "Compréhension des situations fluctuante, nécessitant reformulations",
+      "Compréhension des situations limitée, avec besoin d’explications répétées",
+      "Compréhension des situations très réduite, avec consignes à simplifier systématiquement",
+      "Compréhension des situations fortement altérée, avec accompagnement constant pour se repérer"
+    ],
+    "F": [
+      "Compréhension des situations adéquate",
+      "Compréhension des situations globalement bonne, avec explications simples nécessaires",
+      "Compréhension des situations fluctuante, nécessitant reformulations",
+      "Compréhension des situations limitée, avec besoin d’explications répétées",
+      "Compréhension des situations très réduite, avec consignes à simplifier systématiquement",
+      "Compréhension des situations fortement altérée, avec accompagnement constant pour se repérer"
+    ]
   },
   "douleur": {
-    "M": ["douleurs absentes ou non rapportées","douleurs légères","douleurs modérées (évaluation régulière)","douleurs importantes (antalgiques réguliers)","douleurs très importantes (mobilisation/sommeil impactés)","douleurs quasi permanentes (difficiles à soulager)"],
-    "F": ["douleurs absentes ou non rapportées","douleurs légères","douleurs modérées (évaluation régulière)","douleurs importantes (antalgiques réguliers)","douleurs très importantes (mobilisation/sommeil impactés)","douleurs quasi permanentes (difficiles à soulager)"]
+    "M": [
+      "aucune plainte douloureuse rapportée",
+      "douleurs discrètes, bien tolérées",
+      "douleurs présentes, nécessitant des ajustements au quotidien",
+      "douleurs fréquentes, avec inconfort marqué",
+      "douleurs importantes, limitant les activités",
+      "douleurs très importantes, avec inconfort quasi constant"
+    ],
+    "F": [
+      "aucune plainte douloureuse rapportée",
+      "douleurs discrètes, bien tolérées",
+      "douleurs présentes, nécessitant des ajustements au quotidien",
+      "douleurs fréquentes, avec inconfort marqué",
+      "douleurs importantes, limitant les activités",
+      "douleurs très importantes, avec inconfort quasi constant"
+    ]
+  },
+  "douleur_impact": {
+    "M": [
+      "douleurs sans retentissement fonctionnel notable",
+      "douleurs avec retentissement léger sur certaines activités",
+      "douleurs avec retentissement modéré, entraînant des pauses et adaptations",
+      "douleurs avec retentissement important, limitant la mobilisation et/ou les soins",
+      "douleurs avec retentissement très important, entravant significativement les activités",
+      "douleurs avec retentissement majeur, rendant plusieurs activités difficilement réalisables"
+    ],
+    "F": [
+      "douleurs sans retentissement fonctionnel notable",
+      "douleurs avec retentissement léger sur certaines activités",
+      "douleurs avec retentissement modéré, entraînant des pauses et adaptations",
+      "douleurs avec retentissement important, limitant la mobilisation et/ou les soins",
+      "douleurs avec retentissement très important, entravant significativement les activités",
+      "douleurs avec retentissement majeur, rendant plusieurs activités difficilement réalisables"
+    ]
+  },
+  "douleur_traitement": {
+    "M": [
+      "Besoin d’antalgiques / suivi non exprimé à ce stade",
+      "Besoin d’antalgiques / suivi ponctuel, selon les besoins",
+      "Besoin d’antalgiques / suivi régulier, avec réévaluation",
+      "Besoin d’antalgiques / suivi fréquent, avec adaptation du traitement",
+      "Besoin d’antalgiques / suivi très rapproché, avec surveillance de l’efficacité",
+      "Besoin d’antalgiques / suivi constant, avec ajustements répétés"
+    ],
+    "F": [
+      "Besoin d’antalgiques / suivi non exprimé à ce stade",
+      "Besoin d’antalgiques / suivi ponctuel, selon les besoins",
+      "Besoin d’antalgiques / suivi régulier, avec réévaluation",
+      "Besoin d’antalgiques / suivi fréquent, avec adaptation du traitement",
+      "Besoin d’antalgiques / suivi très rapproché, avec surveillance de l’efficacité",
+      "Besoin d’antalgiques / suivi constant, avec ajustements répétés"
+    ]
+  },
+  "sante_observance": {
+    "M": [
+      "Adhésion aux soins / consignes bonne",
+      "Adhésion aux soins / consignes globalement bonne, avec rappels ponctuels",
+      "Adhésion aux soins / consignes fluctuante, nécessitant encouragements et explications",
+      "Adhésion aux soins / consignes difficile, avec refus intermittents",
+      "Adhésion aux soins / consignes très difficile, avec opposition fréquente",
+      "Adhésion aux soins / consignes quasi impossible, nécessitant approche très progressive"
+    ],
+    "F": [
+      "Adhésion aux soins / consignes bonne",
+      "Adhésion aux soins / consignes globalement bonne, avec rappels ponctuels",
+      "Adhésion aux soins / consignes fluctuante, nécessitant encouragements et explications",
+      "Adhésion aux soins / consignes difficile, avec refus intermittents",
+      "Adhésion aux soins / consignes très difficile, avec opposition fréquente",
+      "Adhésion aux soins / consignes quasi impossible, nécessitant approche très progressive"
+    ]
+  },
+  "sante_education": {
+    "M": [
+      "Besoin d’enseignement / compréhension limité",
+      "Besoin d’enseignement / compréhension léger, avec messages simples",
+      "Besoin d’enseignement / compréhension présent, avec renforcement régulier",
+      "Besoin d’enseignement / compréhension important, avec répétitions et supports",
+      "Besoin d’enseignement / compréhension très important, avec guidance étroite",
+      "Besoin d’enseignement / compréhension majeur, avec accompagnement continu"
+    ],
+    "F": [
+      "Besoin d’enseignement / compréhension limité",
+      "Besoin d’enseignement / compréhension léger, avec messages simples",
+      "Besoin d’enseignement / compréhension présent, avec renforcement régulier",
+      "Besoin d’enseignement / compréhension important, avec répétitions et supports",
+      "Besoin d’enseignement / compréhension très important, avec guidance étroite",
+      "Besoin d’enseignement / compréhension majeur, avec accompagnement continu"
+    ]
+  },
+  "sante_confort": {
+    "M": [
+      "Bien-être / confort satisfaisant",
+      "Bien-être / confort globalement satisfaisant, avec mesures de confort ponctuelles",
+      "Bien-être / confort fluctuant, nécessitant des ajustements réguliers",
+      "Bien-être / confort altéré, avec besoins de confort fréquents",
+      "Bien-être / confort très altéré, nécessitant des interventions rapprochées",
+      "Bien-être / confort fortement compromis, avec besoin d’un soutien constant"
+    ],
+    "F": [
+      "Bien-être / confort satisfaisant",
+      "Bien-être / confort globalement satisfaisant, avec mesures de confort ponctuelles",
+      "Bien-être / confort fluctuant, nécessitant des ajustements réguliers",
+      "Bien-être / confort altéré, avec besoins de confort fréquents",
+      "Bien-être / confort très altéré, nécessitant des interventions rapprochées",
+      "Bien-être / confort fortement compromis, avec besoin d’un soutien constant"
+    ]
+  },
+  "valeurs_autonomie": {
+    "M": [
+      "Autonomie décisionnelle préservée",
+      "Autonomie décisionnelle globalement préservée, avec besoin de clarification",
+      "Autonomie décisionnelle fluctuante, avec soutien pour exprimer les choix",
+      "Autonomie décisionnelle limitée, nécessitant une guidance régulière",
+      "Autonomie décisionnelle très réduite, avec décisions à soutenir étroitement",
+      "Autonomie décisionnelle fortement réduite, avec décisions assumées en grande partie par l’entourage/équipe"
+    ],
+    "F": [
+      "Autonomie décisionnelle préservée",
+      "Autonomie décisionnelle globalement préservée, avec besoin de clarification",
+      "Autonomie décisionnelle fluctuante, avec soutien pour exprimer les choix",
+      "Autonomie décisionnelle limitée, nécessitant une guidance régulière",
+      "Autonomie décisionnelle très réduite, avec décisions à soutenir étroitement",
+      "Autonomie décisionnelle fortement réduite, avec décisions assumées en grande partie par l’entourage/équipe"
+    ]
+  },
+  "valeurs_motivation": {
+    "M": [
+      "Motivation / participation aux objectifs bonne",
+      "Motivation / participation aux objectifs globalement bonne, avec encouragements ponctuels",
+      "Motivation / participation aux objectifs variable, avec besoin de stimulation",
+      "Motivation / participation aux objectifs faible, nécessitant encouragements réguliers",
+      "Motivation / participation aux objectifs très faible, avec participation limitée",
+      "Motivation / participation aux objectifs quasi absente, avec adhésion difficile"
+    ],
+    "F": [
+      "Motivation / participation aux objectifs bonne",
+      "Motivation / participation aux objectifs globalement bonne, avec encouragements ponctuels",
+      "Motivation / participation aux objectifs variable, avec besoin de stimulation",
+      "Motivation / participation aux objectifs faible, nécessitant encouragements réguliers",
+      "Motivation / participation aux objectifs très faible, avec participation limitée",
+      "Motivation / participation aux objectifs quasi absente, avec adhésion difficile"
+    ]
+  },
+  "valeurs_acceptation": {
+    "M": [
+      "Acceptation de l’aide (soins/AVQ) bonne",
+      "Acceptation de l’aide (soins/AVQ) globalement bonne, avec hésitations ponctuelles",
+      "Acceptation de l’aide (soins/AVQ) fluctuante, nécessitant une approche rassurante",
+      "Acceptation de l’aide (soins/AVQ) difficile, avec résistances régulières",
+      "Acceptation de l’aide (soins/AVQ) très difficile, avec refus fréquents",
+      "Acceptation de l’aide (soins/AVQ) quasi impossible, nécessitant négociation et progression"
+    ],
+    "F": [
+      "Acceptation de l’aide (soins/AVQ) bonne",
+      "Acceptation de l’aide (soins/AVQ) globalement bonne, avec hésitations ponctuelles",
+      "Acceptation de l’aide (soins/AVQ) fluctuante, nécessitant une approche rassurante",
+      "Acceptation de l’aide (soins/AVQ) difficile, avec résistances régulières",
+      "Acceptation de l’aide (soins/AVQ) très difficile, avec refus fréquents",
+      "Acceptation de l’aide (soins/AVQ) quasi impossible, nécessitant négociation et progression"
+    ]
+  },
+  "comm_expression": {
+    "M": [
+      "Expression (parole/gestes) claire",
+      "Expression (parole/gestes) globalement compréhensible, avec lenteur légère",
+      "Expression (parole/gestes) fluctuante, avec recherche de mots et besoin de temps",
+      "Expression (parole/gestes) limitée, avec besoin d’aide pour se faire comprendre",
+      "Expression (parole/gestes) très limitée, recours fréquent aux gestes/indications",
+      "Expression (parole/gestes) quasi impossible, communication surtout non verbale"
+    ],
+    "F": [
+      "Expression (parole/gestes) claire",
+      "Expression (parole/gestes) globalement compréhensible, avec lenteur légère",
+      "Expression (parole/gestes) fluctuante, avec recherche de mots et besoin de temps",
+      "Expression (parole/gestes) limitée, avec besoin d’aide pour se faire comprendre",
+      "Expression (parole/gestes) très limitée, recours fréquent aux gestes/indications",
+      "Expression (parole/gestes) quasi impossible, communication surtout non verbale"
+    ]
+  },
+  "comm_comprehension": {
+    "M": [
+      "Compréhension (consignes/échanges) adéquate",
+      "Compréhension (consignes/échanges) globalement bonne, avec répétitions ponctuelles",
+      "Compréhension (consignes/échanges) fluctuante, nécessitant reformulations",
+      "Compréhension (consignes/échanges) limitée, consignes à simplifier régulièrement",
+      "Compréhension (consignes/échanges) très réduite, avec besoin d’un accompagnement rapproché",
+      "Compréhension (consignes/échanges) fortement altérée, échanges très restreints"
+    ],
+    "F": [
+      "Compréhension (consignes/échanges) adéquate",
+      "Compréhension (consignes/échanges) globalement bonne, avec répétitions ponctuelles",
+      "Compréhension (consignes/échanges) fluctuante, nécessitant reformulations",
+      "Compréhension (consignes/échanges) limitée, consignes à simplifier régulièrement",
+      "Compréhension (consignes/échanges) très réduite, avec besoin d’un accompagnement rapproché",
+      "Compréhension (consignes/échanges) fortement altérée, échanges très restreints"
+    ]
+  },
+  "comm_aides": {
+    "M": [
+      "Besoin d’aides à la communication absent",
+      "Besoin d’aides à la communication ponctuel (parler lentement, vérifier la compréhension)",
+      "Besoin d’aides à la communication régulier (phrases courtes, supports visuels)",
+      "Besoin d’aides à la communication important (répétitions, reformulations, gestes)",
+      "Besoin d’aides à la communication très important, avec stratégies systématiques",
+      "Besoin d’aides à la communication majeur, avec support constant"
+    ],
+    "F": [
+      "Besoin d’aides à la communication absent",
+      "Besoin d’aides à la communication ponctuel (parler lentement, vérifier la compréhension)",
+      "Besoin d’aides à la communication régulier (phrases courtes, supports visuels)",
+      "Besoin d’aides à la communication important (répétitions, reformulations, gestes)",
+      "Besoin d’aides à la communication très important, avec stratégies systématiques",
+      "Besoin d’aides à la communication majeur, avec support constant"
+    ]
+  },
+  "comm_langue": {
+    "M": [
+      "Barrière de langue / compréhension culturelle non relevée",
+      "Barrière de langue / compréhension culturelle légère, gérable avec langage simple",
+      "Barrière de langue / compréhension culturelle présente, nécessitant adaptations",
+      "Barrière de langue / compréhension culturelle importante, avec besoin d’un relais (famille/interprète)",
+      "Barrière de langue / compréhension culturelle très importante, échanges difficiles",
+      "Barrière de langue / compréhension culturelle majeure, communication fortement entravée"
+    ],
+    "F": [
+      "Barrière de langue / compréhension culturelle non relevée",
+      "Barrière de langue / compréhension culturelle légère, gérable avec langage simple",
+      "Barrière de langue / compréhension culturelle présente, nécessitant adaptations",
+      "Barrière de langue / compréhension culturelle importante, avec besoin d’un relais (famille/interprète)",
+      "Barrière de langue / compréhension culturelle très importante, échanges difficiles",
+      "Barrière de langue / compréhension culturelle majeure, communication fortement entravée"
+    ]
+  },
+  "secu_chute": {
+    "M": [
+      "Risque de chute non signalé à ce stade",
+      "Risque de chute présent, avec vigilance ponctuelle",
+      "Risque de chute notable, nécessitant surveillance lors des déplacements",
+      "Risque de chute important, avec accompagnement régulier",
+      "Risque de chute très important, avec encadrement rapproché et sécurisation de l’environnement",
+      "Risque de chute majeur, avec accompagnement constant"
+    ],
+    "F": [
+      "Risque de chute non signalé à ce stade",
+      "Risque de chute présent, avec vigilance ponctuelle",
+      "Risque de chute notable, nécessitant surveillance lors des déplacements",
+      "Risque de chute important, avec accompagnement régulier",
+      "Risque de chute très important, avec encadrement rapproché et sécurisation de l’environnement",
+      "Risque de chute majeur, avec accompagnement constant"
+    ]
+  },
+  "secu_peau": {
+    "M": [
+      "Intégrité cutanée / risque d’escarres sans particularité",
+      "Intégrité cutanée / risque d’escarres à surveiller, avec peau fragile par endroits",
+      "Intégrité cutanée / risque d’escarres nécessitant prévention (hydratation, changements de position)",
+      "Intégrité cutanée / risque d’escarres avec zones à risque, mesures renforcées",
+      "Intégrité cutanée / risque d’escarres très préoccupant, prévention rapprochée",
+      "Intégrité cutanée / risque d’escarres majeur, surveillance et soins constants"
+    ],
+    "F": [
+      "Intégrité cutanée / risque d’escarres sans particularité",
+      "Intégrité cutanée / risque d’escarres à surveiller, avec peau fragile par endroits",
+      "Intégrité cutanée / risque d’escarres nécessitant prévention (hydratation, changements de position)",
+      "Intégrité cutanée / risque d’escarres avec zones à risque, mesures renforcées",
+      "Intégrité cutanée / risque d’escarres très préoccupant, prévention rapprochée",
+      "Intégrité cutanée / risque d’escarres majeur, surveillance et soins constants"
+    ]
+  },
+  "secu_hygiene": {
+    "M": [
+      "Hygiène (besoin de supervision) non nécessaire",
+      "Hygiène (besoin de supervision) léger, avec rappels ponctuels",
+      "Hygiène (besoin de supervision) présent, avec guidance régulière",
+      "Hygiène (besoin de supervision) important, avec aide partielle",
+      "Hygiène (besoin de supervision) très important, avec réalisation en grande partie par l’équipe",
+      "Hygiène (besoin de supervision) majeur, prise en charge complète"
+    ],
+    "F": [
+      "Hygiène (besoin de supervision) non nécessaire",
+      "Hygiène (besoin de supervision) léger, avec rappels ponctuels",
+      "Hygiène (besoin de supervision) présent, avec guidance régulière",
+      "Hygiène (besoin de supervision) important, avec aide partielle",
+      "Hygiène (besoin de supervision) très important, avec réalisation en grande partie par l’équipe",
+      "Hygiène (besoin de supervision) majeur, prise en charge complète"
+    ]
+  },
+  "secu_infection": {
+    "M": [
+      "Risque infectieux (surveillance) non particulier",
+      "Risque infectieux (surveillance) léger, avec vigilance de routine",
+      "Risque infectieux (surveillance) présent, avec contrôles réguliers",
+      "Risque infectieux (surveillance) important, avec surveillance rapprochée",
+      "Risque infectieux (surveillance) très important, avec mesures de prévention renforcées",
+      "Risque infectieux (surveillance) majeur, avec surveillance continue"
+    ],
+    "F": [
+      "Risque infectieux (surveillance) non particulier",
+      "Risque infectieux (surveillance) léger, avec vigilance de routine",
+      "Risque infectieux (surveillance) présent, avec contrôles réguliers",
+      "Risque infectieux (surveillance) important, avec surveillance rapprochée",
+      "Risque infectieux (surveillance) très important, avec mesures de prévention renforcées",
+      "Risque infectieux (surveillance) majeur, avec surveillance continue"
+    ]
+  },
+  "secu_circulation": {
+    "M": [
+      "Circulation / œdèmes (surveillance) sans particularité",
+      "Circulation / œdèmes (surveillance) avec signes discrets, à surveiller",
+      "Circulation / œdèmes (surveillance) avec œdèmes modérés, mesures simples proposées",
+      "Circulation / œdèmes (surveillance) avec œdèmes marqués, surveillance et mesures renforcées",
+      "Circulation / œdèmes (surveillance) très perturbée, avec besoin de mesures rapprochées",
+      "Circulation / œdèmes (surveillance) fortement perturbée, avec surveillance étroite"
+    ],
+    "F": [
+      "Circulation / œdèmes (surveillance) sans particularité",
+      "Circulation / œdèmes (surveillance) avec signes discrets, à surveiller",
+      "Circulation / œdèmes (surveillance) avec œdèmes modérés, mesures simples proposées",
+      "Circulation / œdèmes (surveillance) avec œdèmes marqués, surveillance et mesures renforcées",
+      "Circulation / œdèmes (surveillance) très perturbée, avec besoin de mesures rapprochées",
+      "Circulation / œdèmes (surveillance) fortement perturbée, avec surveillance étroite"
+    ]
+  },
+  "secu_medic": {
+    "M": [
+      "Sécurité médicamenteuse / suivi assuré sans difficulté",
+      "Sécurité médicamenteuse / suivi à soutenir ponctuellement (rappels, vérification)",
+      "Sécurité médicamenteuse / suivi nécessitant une supervision régulière",
+      "Sécurité médicamenteuse / suivi nécessitant une prise en charge partielle par l’équipe",
+      "Sécurité médicamenteuse / suivi nécessitant une prise en charge quasi complète",
+      "Sécurité médicamenteuse / suivi entièrement assuré par l’équipe, avec contrôles constants"
+    ],
+    "F": [
+      "Sécurité médicamenteuse / suivi assuré sans difficulté",
+      "Sécurité médicamenteuse / suivi à soutenir ponctuellement (rappels, vérification)",
+      "Sécurité médicamenteuse / suivi nécessitant une supervision régulière",
+      "Sécurité médicamenteuse / suivi nécessitant une prise en charge partielle par l’équipe",
+      "Sécurité médicamenteuse / suivi nécessitant une prise en charge quasi complète",
+      "Sécurité médicamenteuse / suivi entièrement assuré par l’équipe, avec contrôles constants"
+    ]
+  },
+  "danger_fugue": {
+    "M": [
+      "Risque de fugue / errance non relevé",
+      "Risque de fugue / errance occasionnel, à surveiller",
+      "Risque de fugue / errance présent, avec besoin de repères et vigilance",
+      "Risque de fugue / errance important, nécessitant surveillance rapprochée",
+      "Risque de fugue / errance très important, avec encadrement quasi constant",
+      "Risque de fugue / errance majeur, avec sécurisation et accompagnement permanent"
+    ],
+    "F": [
+      "Risque de fugue / errance non relevé",
+      "Risque de fugue / errance occasionnel, à surveiller",
+      "Risque de fugue / errance présent, avec besoin de repères et vigilance",
+      "Risque de fugue / errance important, nécessitant surveillance rapprochée",
+      "Risque de fugue / errance très important, avec encadrement quasi constant",
+      "Risque de fugue / errance majeur, avec sécurisation et accompagnement permanent"
+    ]
+  },
+  "danger_impulsivite": {
+    "M": [
+      "Impulsivité / comportements à risque non observés",
+      "Impulsivité / comportements à risque occasionnels, avec recadrage ponctuel",
+      "Impulsivité / comportements à risque présents, nécessitant cadre clair",
+      "Impulsivité / comportements à risque fréquents, avec besoin d’encadrement régulier",
+      "Impulsivité / comportements à risque très fréquents, avec surveillance rapprochée",
+      "Impulsivité / comportements à risque majeurs, avec encadrement constant"
+    ],
+    "F": [
+      "Impulsivité / comportements à risque non observés",
+      "Impulsivité / comportements à risque occasionnels, avec recadrage ponctuel",
+      "Impulsivité / comportements à risque présents, nécessitant cadre clair",
+      "Impulsivité / comportements à risque fréquents, avec besoin d’encadrement régulier",
+      "Impulsivité / comportements à risque très fréquents, avec surveillance rapprochée",
+      "Impulsivité / comportements à risque majeurs, avec encadrement constant"
+    ]
+  },
+  "danger_agressivite": {
+    "M": [
+      "Risque d’agressivité / conflit non signalé",
+      "Risque d’agressivité / conflit occasionnel, avec tension ponctuelle",
+      "Risque d’agressivité / conflit présent, nécessitant approche apaisante",
+      "Risque d’agressivité / conflit important, avec épisodes réguliers",
+      "Risque d’agressivité / conflit très important, avec besoin d’encadrement rapproché",
+      "Risque d’agressivité / conflit majeur, avec risque élevé de décompensation comportementale"
+    ],
+    "F": [
+      "Risque d’agressivité / conflit non signalé",
+      "Risque d’agressivité / conflit occasionnel, avec tension ponctuelle",
+      "Risque d’agressivité / conflit présent, nécessitant approche apaisante",
+      "Risque d’agressivité / conflit important, avec épisodes réguliers",
+      "Risque d’agressivité / conflit très important, avec besoin d’encadrement rapproché",
+      "Risque d’agressivité / conflit majeur, avec risque élevé de décompensation comportementale"
+    ]
+  },
+  "soi_anxiete": {
+    "M": [
+      "Anxiété / inquiétude non marquée",
+      "Anxiété / inquiétude légère, avec besoin de réassurance ponctuelle",
+      "Anxiété / inquiétude présente, avec besoin d’écoute et de soutien",
+      "Anxiété / inquiétude importante, avec réassurance régulière",
+      "Anxiété / inquiétude très importante, avec retentissement sur le quotidien",
+      "Anxiété / inquiétude majeure, nécessitant un soutien constant"
+    ],
+    "F": [
+      "Anxiété / inquiétude non marquée",
+      "Anxiété / inquiétude légère, avec besoin de réassurance ponctuelle",
+      "Anxiété / inquiétude présente, avec besoin d’écoute et de soutien",
+      "Anxiété / inquiétude importante, avec réassurance régulière",
+      "Anxiété / inquiétude très importante, avec retentissement sur le quotidien",
+      "Anxiété / inquiétude majeure, nécessitant un soutien constant"
+    ]
+  },
+  "soi_humeur": {
+    "M": [
+      "Humeur (tristesse/irritabilité) stable",
+      "Humeur (tristesse/irritabilité) légèrement fluctuante",
+      "Humeur (tristesse/irritabilité) fluctuante, avec irritabilité/tristesse par moments",
+      "Humeur (tristesse/irritabilité) altérée, avec épisodes réguliers",
+      "Humeur (tristesse/irritabilité) très altérée, avec retentissement important",
+      "Humeur (tristesse/irritabilité) fortement altérée, avec besoin de soutien rapproché"
+    ],
+    "F": [
+      "Humeur (tristesse/irritabilité) stable",
+      "Humeur (tristesse/irritabilité) légèrement fluctuante",
+      "Humeur (tristesse/irritabilité) fluctuante, avec irritabilité/tristesse par moments",
+      "Humeur (tristesse/irritabilité) altérée, avec épisodes réguliers",
+      "Humeur (tristesse/irritabilité) très altérée, avec retentissement important",
+      "Humeur (tristesse/irritabilité) fortement altérée, avec besoin de soutien rapproché"
+    ]
+  },
+  "soi_estime": {
+    "M": [
+      "Estime de soi / confiance préservée",
+      "Estime de soi / confiance légèrement fragilisée",
+      "Estime de soi / confiance fragile, avec besoin de valorisation",
+      "Estime de soi / confiance faible, avec découragement fréquent",
+      "Estime de soi / confiance très faible, avec retrait et manque d’assurance",
+      "Estime de soi / confiance fortement altérée, nécessitant un accompagnement soutenu"
+    ],
+    "F": [
+      "Estime de soi / confiance préservée",
+      "Estime de soi / confiance légèrement fragilisée",
+      "Estime de soi / confiance fragile, avec besoin de valorisation",
+      "Estime de soi / confiance faible, avec découragement fréquent",
+      "Estime de soi / confiance très faible, avec retrait et manque d’assurance",
+      "Estime de soi / confiance fortement altérée, nécessitant un accompagnement soutenu"
+    ]
+  },
+  "social_reseau": {
+    "M": [
+      "Soutien familial / réseau présent et mobilisable",
+      "Soutien familial / réseau présent mais irrégulier",
+      "Soutien familial / réseau limité, avec besoin de coordination",
+      "Soutien familial / réseau faible, nécessitant relais par les professionnels",
+      "Soutien familial / réseau très faible, isolement important",
+      "Soutien familial / réseau absent, nécessitant une prise en charge complète"
+    ],
+    "F": [
+      "Soutien familial / réseau présent et mobilisable",
+      "Soutien familial / réseau présent mais irrégulier",
+      "Soutien familial / réseau limité, avec besoin de coordination",
+      "Soutien familial / réseau faible, nécessitant relais par les professionnels",
+      "Soutien familial / réseau très faible, isolement important",
+      "Soutien familial / réseau absent, nécessitant une prise en charge complète"
+    ]
+  },
+  "social_participation": {
+    "M": [
+      "Participation sociale / isolement satisfaisante",
+      "Participation sociale / isolement légèrement réduit",
+      "Participation sociale / isolement réduit, avec retrait progressif",
+      "Participation sociale / isolement important, avec peu d’activités",
+      "Participation sociale / isolement très important, avec retrait marqué",
+      "Participation sociale / isolement majeur, isolement quasi complet"
+    ],
+    "F": [
+      "Participation sociale / isolement satisfaisante",
+      "Participation sociale / isolement légèrement réduit",
+      "Participation sociale / isolement réduit, avec retrait progressif",
+      "Participation sociale / isolement important, avec peu d’activités",
+      "Participation sociale / isolement très important, avec retrait marqué",
+      "Participation sociale / isolement majeur, isolement quasi complet"
+    ]
+  },
+  "social_aidant": {
+    "M": [
+      "Charge de l’aidant / coordination sans difficulté majeure",
+      "Charge de l’aidant / coordination légère, avec ajustements ponctuels",
+      "Charge de l’aidant / coordination présente, nécessitant coordination régulière",
+      "Charge de l’aidant / coordination importante, avec besoin d’organiser des relais",
+      "Charge de l’aidant / coordination très importante, avec risque d’épuisement",
+      "Charge de l’aidant / coordination majeure, avec besoin de soutien intensif"
+    ],
+    "F": [
+      "Charge de l’aidant / coordination sans difficulté majeure",
+      "Charge de l’aidant / coordination légère, avec ajustements ponctuels",
+      "Charge de l’aidant / coordination présente, nécessitant coordination régulière",
+      "Charge de l’aidant / coordination importante, avec besoin d’organiser des relais",
+      "Charge de l’aidant / coordination très importante, avec risque d’épuisement",
+      "Charge de l’aidant / coordination majeure, avec besoin de soutien intensif"
+    ]
+  },
+  "mob_transferts": {
+    "M": [
+      "Transferts (lit-fauteuil, lever) réalisés de manière autonome",
+      "Transferts (lit-fauteuil, lever) possibles avec supervision",
+      "Transferts (lit-fauteuil, lever) nécessitant une aide ponctuelle",
+      "Transferts (lit-fauteuil, lever) nécessitant une aide régulière",
+      "Transferts (lit-fauteuil, lever) difficiles, avec aide importante",
+      "Transferts (lit-fauteuil, lever) non réalisables de manière autonome"
+    ],
+    "F": [
+      "Transferts (lit-fauteuil, lever) réalisés de manière autonome",
+      "Transferts (lit-fauteuil, lever) possibles avec supervision",
+      "Transferts (lit-fauteuil, lever) nécessitant une aide ponctuelle",
+      "Transferts (lit-fauteuil, lever) nécessitant une aide régulière",
+      "Transferts (lit-fauteuil, lever) difficiles, avec aide importante",
+      "Transferts (lit-fauteuil, lever) non réalisables de manière autonome"
+    ]
+  },
+  "mob_marche": {
+    "M": [
+      "Marche / déplacements possibles sans difficulté particulière",
+      "Marche / déplacements globalement stables, avec pauses occasionnelles",
+      "Marche / déplacements limités, avec besoin de supervision",
+      "Marche / déplacements difficiles, avec aide régulière",
+      "Marche / déplacements très limités, avec accompagnement rapproché",
+      "Marche / déplacements quasi impossibles, recours majoritaire au fauteuil"
+    ],
+    "F": [
+      "Marche / déplacements possibles sans difficulté particulière",
+      "Marche / déplacements globalement stables, avec pauses occasionnelles",
+      "Marche / déplacements limités, avec besoin de supervision",
+      "Marche / déplacements difficiles, avec aide régulière",
+      "Marche / déplacements très limités, avec accompagnement rapproché",
+      "Marche / déplacements quasi impossibles, recours majoritaire au fauteuil"
+    ]
+  },
+  "mob_equilibre": {
+    "M": [
+      "Équilibre / stabilité satisfaisants",
+      "Équilibre / stabilité légèrement instables, avec prudence",
+      "Équilibre / stabilité instables, avec besoin de sécurisation",
+      "Équilibre / stabilité très instables, avec risque de déséquilibre",
+      "Équilibre / stabilité fortement compromis, avec encadrement rapproché",
+      "Équilibre / stabilité majeur, nécessitant assistance constante"
+    ],
+    "F": [
+      "Équilibre / stabilité satisfaisants",
+      "Équilibre / stabilité légèrement instables, avec prudence",
+      "Équilibre / stabilité instables, avec besoin de sécurisation",
+      "Équilibre / stabilité très instables, avec risque de déséquilibre",
+      "Équilibre / stabilité fortement compromis, avec encadrement rapproché",
+      "Équilibre / stabilité majeur, nécessitant assistance constante"
+    ]
+  },
+  "mob_escalier": {
+    "M": [
+      "Escaliers / franchissements possibles",
+      "Escaliers / franchissements possibles avec appui et prudence",
+      "Escaliers / franchissements possibles avec surveillance",
+      "Escaliers / franchissements difficiles, avec aide régulière",
+      "Escaliers / franchissements très difficiles, généralement évités",
+      "Escaliers / franchissements impossibles, nécessitant alternative"
+    ],
+    "F": [
+      "Escaliers / franchissements possibles",
+      "Escaliers / franchissements possibles avec appui et prudence",
+      "Escaliers / franchissements possibles avec surveillance",
+      "Escaliers / franchissements difficiles, avec aide régulière",
+      "Escaliers / franchissements très difficiles, généralement évités",
+      "Escaliers / franchissements impossibles, nécessitant alternative"
+    ]
+  },
+  "mob_aides": {
+    "M": [
+      "Besoin d’aide technique (canne, rollator) absent",
+      "Besoin d’aide technique (canne, rollator) ponctuel",
+      "Besoin d’aide technique (canne, rollator) présent lors des déplacements",
+      "Besoin d’aide technique (canne, rollator) important, utilisation régulière",
+      "Besoin d’aide technique (canne, rollator) très important, indispensable",
+      "Besoin d’aide technique (canne, rollator) majeur, avec besoin d’assistance en plus"
+    ],
+    "F": [
+      "Besoin d’aide technique (canne, rollator) absent",
+      "Besoin d’aide technique (canne, rollator) ponctuel",
+      "Besoin d’aide technique (canne, rollator) présent lors des déplacements",
+      "Besoin d’aide technique (canne, rollator) important, utilisation régulière",
+      "Besoin d’aide technique (canne, rollator) très important, indispensable",
+      "Besoin d’aide technique (canne, rollator) majeur, avec besoin d’assistance en plus"
+    ]
+  },
+  "mob_endurance": {
+    "M": [
+      "Tolérance à l’effort / essoufflement à la marche bonne",
+      "Tolérance à l’effort / essoufflement à la marche légèrement diminuée",
+      "Tolérance à l’effort / essoufflement à la marche diminuée, pauses nécessaires",
+      "Tolérance à l’effort / essoufflement à la marche faible, effort limité",
+      "Tolérance à l’effort / essoufflement à la marche très faible, déplacement difficile",
+      "Tolérance à l’effort / essoufflement à la marche quasi nulle, avec limitation majeure"
+    ],
+    "F": [
+      "Tolérance à l’effort / essoufflement à la marche bonne",
+      "Tolérance à l’effort / essoufflement à la marche légèrement diminuée",
+      "Tolérance à l’effort / essoufflement à la marche diminuée, pauses nécessaires",
+      "Tolérance à l’effort / essoufflement à la marche faible, effort limité",
+      "Tolérance à l’effort / essoufflement à la marche très faible, déplacement difficile",
+      "Tolérance à l’effort / essoufflement à la marche quasi nulle, avec limitation majeure"
+    ]
+  },
+  "energie_fatigue": {
+    "M": [
+      "Fatigue / endurance sans élément marquant",
+      "Fatigue / endurance légèrement diminuée, avec pauses ponctuelles",
+      "Fatigue / endurance diminuée, nécessitant des temps de repos",
+      "Fatigue / endurance faible, avec fatigabilité rapide",
+      "Fatigue / endurance très faible, activités très limitées",
+      "Fatigue / endurance majeure, besoin de repos quasi constant"
+    ],
+    "F": [
+      "Fatigue / endurance sans élément marquant",
+      "Fatigue / endurance légèrement diminuée, avec pauses ponctuelles",
+      "Fatigue / endurance diminuée, nécessitant des temps de repos",
+      "Fatigue / endurance faible, avec fatigabilité rapide",
+      "Fatigue / endurance très faible, activités très limitées",
+      "Fatigue / endurance majeure, besoin de repos quasi constant"
+    ]
+  },
+  "activites_quot": {
+    "M": [
+      "Activités quotidiennes (organisation) gérées de manière autonome",
+      "Activités quotidiennes (organisation) globalement gérées, avec rappels ponctuels",
+      "Activités quotidiennes (organisation) nécessitant repères et soutien régulier",
+      "Activités quotidiennes (organisation) difficiles, avec besoin d’encadrement",
+      "Activités quotidiennes (organisation) très difficiles, prise en charge importante",
+      "Activités quotidiennes (organisation) non gérées de manière autonome"
+    ],
+    "F": [
+      "Activités quotidiennes (organisation) gérées de manière autonome",
+      "Activités quotidiennes (organisation) globalement gérées, avec rappels ponctuels",
+      "Activités quotidiennes (organisation) nécessitant repères et soutien régulier",
+      "Activités quotidiennes (organisation) difficiles, avec besoin d’encadrement",
+      "Activités quotidiennes (organisation) très difficiles, prise en charge importante",
+      "Activités quotidiennes (organisation) non gérées de manière autonome"
+    ]
+  },
+  "gestion_taches": {
+    "M": [
+      "Gestion tâches simples (repères, routine) adéquate",
+      "Gestion tâches simples (repères, routine) globalement correcte, avec guidance ponctuelle",
+      "Gestion tâches simples (repères, routine) fluctuante, avec besoin de rappels",
+      "Gestion tâches simples (repères, routine) limitée, avec accompagnement régulier",
+      "Gestion tâches simples (repères, routine) très limitée, avec aide importante",
+      "Gestion tâches simples (repères, routine) quasi impossible, dépendance élevée"
+    ],
+    "F": [
+      "Gestion tâches simples (repères, routine) adéquate",
+      "Gestion tâches simples (repères, routine) globalement correcte, avec guidance ponctuelle",
+      "Gestion tâches simples (repères, routine) fluctuante, avec besoin de rappels",
+      "Gestion tâches simples (repères, routine) limitée, avec accompagnement régulier",
+      "Gestion tâches simples (repères, routine) très limitée, avec aide importante",
+      "Gestion tâches simples (repères, routine) quasi impossible, dépendance élevée"
+    ]
+  },
+  "alim_appetit": {
+    "M": [
+      "Appétit / prises alimentaires satisfaisants",
+      "Appétit / prises alimentaires légèrement diminués",
+      "Appétit / prises alimentaires diminués, avec encouragements nécessaires",
+      "Appétit / prises alimentaires faibles, avec apports souvent insuffisants",
+      "Appétit / prises alimentaires très faibles, avec refus fréquents",
+      "Appétit / prises alimentaires quasi nuls, avec risque de dénutrition"
+    ],
+    "F": [
+      "Appétit / prises alimentaires satisfaisants",
+      "Appétit / prises alimentaires légèrement diminués",
+      "Appétit / prises alimentaires diminués, avec encouragements nécessaires",
+      "Appétit / prises alimentaires faibles, avec apports souvent insuffisants",
+      "Appétit / prises alimentaires très faibles, avec refus fréquents",
+      "Appétit / prises alimentaires quasi nuls, avec risque de dénutrition"
+    ]
+  },
+  "alim_hydratation": {
+    "M": [
+      "Hydratation / surveillance adéquate",
+      "Hydratation / surveillance à soutenir ponctuellement (rappels)",
+      "Hydratation / surveillance nécessitant encouragements réguliers",
+      "Hydratation / surveillance difficile, apports insuffisants fréquents",
+      "Hydratation / surveillance très difficile, avec suivi rapproché",
+      "Hydratation / surveillance majeure, avec contrôle strict des apports"
+    ],
+    "F": [
+      "Hydratation / surveillance adéquate",
+      "Hydratation / surveillance à soutenir ponctuellement (rappels)",
+      "Hydratation / surveillance nécessitant encouragements réguliers",
+      "Hydratation / surveillance difficile, apports insuffisants fréquents",
+      "Hydratation / surveillance très difficile, avec suivi rapproché",
+      "Hydratation / surveillance majeure, avec contrôle strict des apports"
+    ]
+  },
+  "alim_deglutition": {
+    "M": [
+      "Déglutition / risque de fausse route sans difficulté repérée",
+      "Déglutition / risque de fausse route à surveiller, toux occasionnelle",
+      "Déglutition / risque de fausse route sensible, adaptations nécessaires",
+      "Déglutition / risque de fausse route important, consignes strictes au repas",
+      "Déglutition / risque de fausse route très important, textures/rythme à adapter systématiquement",
+      "Déglutition / risque de fausse route majeur, alimentation à sécuriser étroitement"
+    ],
+    "F": [
+      "Déglutition / risque de fausse route sans difficulté repérée",
+      "Déglutition / risque de fausse route à surveiller, toux occasionnelle",
+      "Déglutition / risque de fausse route sensible, adaptations nécessaires",
+      "Déglutition / risque de fausse route important, consignes strictes au repas",
+      "Déglutition / risque de fausse route très important, textures/rythme à adapter systématiquement",
+      "Déglutition / risque de fausse route majeur, alimentation à sécuriser étroitement"
+    ]
+  },
+  "alim_aide": {
+    "M": [
+      "Aide au repas (coupe, stimulation, assistance) non nécessaire",
+      "Aide au repas (coupe, stimulation, assistance) légère (couper, installer)",
+      "Aide au repas (coupe, stimulation, assistance) régulière, avec stimulation",
+      "Aide au repas (coupe, stimulation, assistance) importante, avec assistance partielle",
+      "Aide au repas (coupe, stimulation, assistance) très importante, avec assistance majeure",
+      "Aide au repas (coupe, stimulation, assistance) complète, alimentation assurée par l’équipe"
+    ],
+    "F": [
+      "Aide au repas (coupe, stimulation, assistance) non nécessaire",
+      "Aide au repas (coupe, stimulation, assistance) légère (couper, installer)",
+      "Aide au repas (coupe, stimulation, assistance) régulière, avec stimulation",
+      "Aide au repas (coupe, stimulation, assistance) importante, avec assistance partielle",
+      "Aide au repas (coupe, stimulation, assistance) très importante, avec assistance majeure",
+      "Aide au repas (coupe, stimulation, assistance) complète, alimentation assurée par l’équipe"
+    ]
+  },
+  "alim_regime": {
+    "M": [
+      "Régime / consignes alimentaires bien intégrés",
+      "Régime / consignes alimentaires globalement respectés, avec rappels ponctuels",
+      "Régime / consignes alimentaires partiellement respectés, besoin de rappels",
+      "Régime / consignes alimentaires difficiles à suivre, écarts fréquents",
+      "Régime / consignes alimentaires très difficiles à suivre, adhésion faible",
+      "Régime / consignes alimentaires non suivis, nécessitant encadrement strict"
+    ],
+    "F": [
+      "Régime / consignes alimentaires bien intégrés",
+      "Régime / consignes alimentaires globalement respectés, avec rappels ponctuels",
+      "Régime / consignes alimentaires partiellement respectés, besoin de rappels",
+      "Régime / consignes alimentaires difficiles à suivre, écarts fréquents",
+      "Régime / consignes alimentaires très difficiles à suivre, adhésion faible",
+      "Régime / consignes alimentaires non suivis, nécessitant encadrement strict"
+    ]
+  },
+  "alim_digestif": {
+    "M": [
+      "Inconfort digestif / nausées non rapportés",
+      "Inconfort digestif / nausées occasionnels",
+      "Inconfort digestif / nausées réguliers, avec besoin d’adaptations",
+      "Inconfort digestif / nausées fréquents, avec retentissement sur l’alimentation",
+      "Inconfort digestif / nausées très fréquents, avec gêne importante",
+      "Inconfort digestif / nausées majeurs, nécessitant prise en charge rapprochée"
+    ],
+    "F": [
+      "Inconfort digestif / nausées non rapportés",
+      "Inconfort digestif / nausées occasionnels",
+      "Inconfort digestif / nausées réguliers, avec besoin d’adaptations",
+      "Inconfort digestif / nausées fréquents, avec retentissement sur l’alimentation",
+      "Inconfort digestif / nausées très fréquents, avec gêne importante",
+      "Inconfort digestif / nausées majeurs, nécessitant prise en charge rapprochée"
+    ]
+  },
+  "sommeil_qualite": {
+    "M": [
+      "Qualité du sommeil satisfaisante",
+      "Qualité du sommeil globalement correcte, avec endormissement parfois prolongé",
+      "Qualité du sommeil fluctuante, avec sommeil peu réparateur",
+      "Qualité du sommeil altérée, avec fatigue au réveil",
+      "Qualité du sommeil très altérée, avec retentissement important",
+      "Qualité du sommeil fortement altérée, avec besoin d’un soutien rapproché"
+    ],
+    "F": [
+      "Qualité du sommeil satisfaisante",
+      "Qualité du sommeil globalement correcte, avec endormissement parfois prolongé",
+      "Qualité du sommeil fluctuante, avec sommeil peu réparateur",
+      "Qualité du sommeil altérée, avec fatigue au réveil",
+      "Qualité du sommeil très altérée, avec retentissement important",
+      "Qualité du sommeil fortement altérée, avec besoin d’un soutien rapproché"
+    ]
+  },
+  "sommeil_reveils": {
+    "M": [
+      "Réveils nocturnes / agitation non signalés",
+      "Réveils nocturnes / agitation occasionnels",
+      "Réveils nocturnes / agitation réguliers, avec besoin de réassurance",
+      "Réveils nocturnes / agitation fréquents, avec perturbation du repos",
+      "Réveils nocturnes / agitation très fréquents, avec retentissement important",
+      "Réveils nocturnes / agitation majeurs, nécessitant surveillance rapprochée"
+    ],
+    "F": [
+      "Réveils nocturnes / agitation non signalés",
+      "Réveils nocturnes / agitation occasionnels",
+      "Réveils nocturnes / agitation réguliers, avec besoin de réassurance",
+      "Réveils nocturnes / agitation fréquents, avec perturbation du repos",
+      "Réveils nocturnes / agitation très fréquents, avec retentissement important",
+      "Réveils nocturnes / agitation majeurs, nécessitant surveillance rapprochée"
+    ]
+  },
+  "sommeil_sieste": {
+    "M": [
+      "Somnolence diurne / siestes non marquées",
+      "Somnolence diurne / siestes occasionnelles",
+      "Somnolence diurne / siestes régulières, avec baisse d’énergie",
+      "Somnolence diurne / siestes fréquentes, avec participation réduite",
+      "Somnolence diurne / siestes très fréquentes, avec retentissement important",
+      "Somnolence diurne / siestes majeures, vigilance très réduite"
+    ],
+    "F": [
+      "Somnolence diurne / siestes non marquées",
+      "Somnolence diurne / siestes occasionnelles",
+      "Somnolence diurne / siestes régulières, avec baisse d’énergie",
+      "Somnolence diurne / siestes fréquentes, avec participation réduite",
+      "Somnolence diurne / siestes très fréquentes, avec retentissement important",
+      "Somnolence diurne / siestes majeures, vigilance très réduite"
+    ]
+  },
+  "avq_toilette": {
+    "M": [
+      "Toilette / hygiène réalisées de manière autonome",
+      "Toilette / hygiène globalement autonomes, avec supervision",
+      "Toilette / hygiène nécessitant une aide partielle",
+      "Toilette / hygiène nécessitant une aide régulière",
+      "Toilette / hygiène très difficiles, avec prise en charge importante",
+      "Toilette / hygiène non réalisables de manière autonome, prise en charge complète"
+    ],
+    "F": [
+      "Toilette / hygiène réalisées de manière autonome",
+      "Toilette / hygiène globalement autonomes, avec supervision",
+      "Toilette / hygiène nécessitant une aide partielle",
+      "Toilette / hygiène nécessitant une aide régulière",
+      "Toilette / hygiène très difficiles, avec prise en charge importante",
+      "Toilette / hygiène non réalisables de manière autonome, prise en charge complète"
+    ]
+  },
+  "avq_habillage": {
+    "M": [
+      "Habillage réalisé de manière autonome",
+      "Habillage globalement autonome, avec aide ponctuelle",
+      "Habillage nécessitant une aide régulière (choix, mise en place)",
+      "Habillage difficile, avec aide importante",
+      "Habillage très difficile, majoritairement réalisé par l’équipe",
+      "Habillage entièrement réalisé par l’équipe"
+    ],
+    "F": [
+      "Habillage réalisé de manière autonome",
+      "Habillage globalement autonome, avec aide ponctuelle",
+      "Habillage nécessitant une aide régulière (choix, mise en place)",
+      "Habillage difficile, avec aide importante",
+      "Habillage très difficile, majoritairement réalisé par l’équipe",
+      "Habillage entièrement réalisé par l’équipe"
+    ]
+  },
+  "avq_transferts_wc": {
+    "M": [
+      "Aller aux WC / gestion toilettes gérés de manière autonome",
+      "Aller aux WC / gestion toilettes globalement autonomes, avec supervision",
+      "Aller aux WC / gestion toilettes nécessitant une aide ponctuelle",
+      "Aller aux WC / gestion toilettes nécessitant une aide régulière",
+      "Aller aux WC / gestion toilettes très difficiles, avec prise en charge importante",
+      "Aller aux WC / gestion toilettes pris en charge par l’équipe"
+    ],
+    "F": [
+      "Aller aux WC / gestion toilettes gérés de manière autonome",
+      "Aller aux WC / gestion toilettes globalement autonomes, avec supervision",
+      "Aller aux WC / gestion toilettes nécessitant une aide ponctuelle",
+      "Aller aux WC / gestion toilettes nécessitant une aide régulière",
+      "Aller aux WC / gestion toilettes très difficiles, avec prise en charge importante",
+      "Aller aux WC / gestion toilettes pris en charge par l’équipe"
+    ]
+  },
+  "avq_soins": {
+    "M": [
+      "Soins corporels spécifiques (peau, ongles) sans besoin particulier",
+      "Soins corporels spécifiques (peau, ongles) ponctuels, selon observation",
+      "Soins corporels spécifiques (peau, ongles) réguliers, avec surveillance",
+      "Soins corporels spécifiques (peau, ongles) fréquents, avec mesures renforcées",
+      "Soins corporels spécifiques (peau, ongles) très fréquents, avec suivi rapproché",
+      "Soins corporels spécifiques (peau, ongles) constants, avec prise en charge complète"
+    ],
+    "F": [
+      "Soins corporels spécifiques (peau, ongles) sans besoin particulier",
+      "Soins corporels spécifiques (peau, ongles) ponctuels, selon observation",
+      "Soins corporels spécifiques (peau, ongles) réguliers, avec surveillance",
+      "Soins corporels spécifiques (peau, ongles) fréquents, avec mesures renforcées",
+      "Soins corporels spécifiques (peau, ongles) très fréquents, avec suivi rapproché",
+      "Soins corporels spécifiques (peau, ongles) constants, avec prise en charge complète"
+    ]
+  },
+  "resp_dyspnee": {
+    "M": [
+      "Dyspnée / essoufflement non signalé",
+      "Dyspnée / essoufflement discret à l’effort",
+      "Dyspnée / essoufflement présent à l’effort, avec pauses nécessaires",
+      "Dyspnée / essoufflement fréquent, limitant les déplacements",
+      "Dyspnée / essoufflement important, avec gêne marquée",
+      "Dyspnée / essoufflement majeur, avec gêne quasi constante"
+    ],
+    "F": [
+      "Dyspnée / essoufflement non signalé",
+      "Dyspnée / essoufflement discret à l’effort",
+      "Dyspnée / essoufflement présent à l’effort, avec pauses nécessaires",
+      "Dyspnée / essoufflement fréquent, limitant les déplacements",
+      "Dyspnée / essoufflement important, avec gêne marquée",
+      "Dyspnée / essoufflement majeur, avec gêne quasi constante"
+    ]
+  },
+  "resp_toux": {
+    "M": [
+      "Toux / encombrement non signalé",
+      "Toux / encombrement léger, occasionnel",
+      "Toux / encombrement présent, avec gêne régulière",
+      "Toux / encombrement important, avec expectorations et besoin d’aide",
+      "Toux / encombrement très important, avec besoin de désencombrement régulier",
+      "Toux / encombrement majeur, avec surveillance rapprochée"
+    ],
+    "F": [
+      "Toux / encombrement non signalé",
+      "Toux / encombrement léger, occasionnel",
+      "Toux / encombrement présent, avec gêne régulière",
+      "Toux / encombrement important, avec expectorations et besoin d’aide",
+      "Toux / encombrement très important, avec besoin de désencombrement régulier",
+      "Toux / encombrement majeur, avec surveillance rapprochée"
+    ]
+  },
+  "resp_oxygeno": {
+    "M": [
+      "Besoin d’oxygène / surveillance non nécessaire",
+      "Besoin d’oxygène / surveillance ponctuel (contrôles)",
+      "Besoin d’oxygène / surveillance régulier, avec contrôles rapprochés",
+      "Besoin d’oxygène / surveillance important, avec surveillance étroite",
+      "Besoin d’oxygène / surveillance très important, avec besoin d’ajustements",
+      "Besoin d’oxygène / surveillance majeur, avec prise en charge continue"
+    ],
+    "F": [
+      "Besoin d’oxygène / surveillance non nécessaire",
+      "Besoin d’oxygène / surveillance ponctuel (contrôles)",
+      "Besoin d’oxygène / surveillance régulier, avec contrôles rapprochés",
+      "Besoin d’oxygène / surveillance important, avec surveillance étroite",
+      "Besoin d’oxygène / surveillance très important, avec besoin d’ajustements",
+      "Besoin d’oxygène / surveillance majeur, avec prise en charge continue"
+    ]
+  },
+  "elim_urinaire": {
+    "M": [
+      "Élimination urinaire (continence) satisfaisante",
+      "Élimination urinaire (continence) avec épisodes occasionnels",
+      "Élimination urinaire (continence) fluctuante, avec fuites régulières",
+      "Élimination urinaire (continence) difficile, protections nécessaires",
+      "Élimination urinaire (continence) très difficile, avec changes fréquents",
+      "Élimination urinaire (continence) fortement compromise, prise en charge complète"
+    ],
+    "F": [
+      "Élimination urinaire (continence) satisfaisante",
+      "Élimination urinaire (continence) avec épisodes occasionnels",
+      "Élimination urinaire (continence) fluctuante, avec fuites régulières",
+      "Élimination urinaire (continence) difficile, protections nécessaires",
+      "Élimination urinaire (continence) très difficile, avec changes fréquents",
+      "Élimination urinaire (continence) fortement compromise, prise en charge complète"
+    ]
+  },
+  "elim_transit": {
+    "M": [
+      "Transit / constipation sans difficulté particulière",
+      "Transit / constipation avec tendance légère",
+      "Transit / constipation présent, avec mesures hygiéno-diététiques/soins à soutenir",
+      "Transit / constipation marqué, avec surveillance et interventions régulières",
+      "Transit / constipation très marqué, avec besoin de prise en charge rapprochée",
+      "Transit / constipation majeur, avec interventions constantes"
+    ],
+    "F": [
+      "Transit / constipation sans difficulté particulière",
+      "Transit / constipation avec tendance légère",
+      "Transit / constipation présent, avec mesures hygiéno-diététiques/soins à soutenir",
+      "Transit / constipation marqué, avec surveillance et interventions régulières",
+      "Transit / constipation très marqué, avec besoin de prise en charge rapprochée",
+      "Transit / constipation majeur, avec interventions constantes"
+    ]
+  },
+  "elim_surv": {
+    "M": [
+      "Surveillance (diurèse, selles) non nécessaire",
+      "Surveillance (diurèse, selles) ponctuelle, selon évolution",
+      "Surveillance (diurèse, selles) régulière",
+      "Surveillance (diurèse, selles) rapprochée, avec traçabilité",
+      "Surveillance (diurèse, selles) très rapprochée, avec suivi strict",
+      "Surveillance (diurèse, selles) constante, avec contrôle étroit"
+    ],
+    "F": [
+      "Surveillance (diurèse, selles) non nécessaire",
+      "Surveillance (diurèse, selles) ponctuelle, selon évolution",
+      "Surveillance (diurèse, selles) régulière",
+      "Surveillance (diurèse, selles) rapprochée, avec traçabilité",
+      "Surveillance (diurèse, selles) très rapprochée, avec suivi strict",
+      "Surveillance (diurèse, selles) constante, avec contrôle étroit"
+    ]
+  },
+  "elim_aide": {
+    "M": [
+      "Aide nécessaire (protections, changes) non requise",
+      "Aide nécessaire (protections, changes) ponctuelle",
+      "Aide nécessaire (protections, changes) régulière",
+      "Aide nécessaire (protections, changes) importante, avec changes fréquents",
+      "Aide nécessaire (protections, changes) très importante, avec prise en charge majeure",
+      "Aide nécessaire (protections, changes) complète, assurée par l’équipe"
+    ],
+    "F": [
+      "Aide nécessaire (protections, changes) non requise",
+      "Aide nécessaire (protections, changes) ponctuelle",
+      "Aide nécessaire (protections, changes) régulière",
+      "Aide nécessaire (protections, changes) importante, avec changes fréquents",
+      "Aide nécessaire (protections, changes) très importante, avec prise en charge majeure",
+      "Aide nécessaire (protections, changes) complète, assurée par l’équipe"
+    ]
   }
 }
+
   </script>
 
   <script id="rules-json" type="application/json">
@@ -436,7 +1564,15 @@
         return s.charAt(0).toUpperCase() + s.slice(1);
       }
 
-      function shouldInclude(rules, paramId, level) {
+      
+
+      function lowerFirst(s) {
+        s = String(s || "").trim();
+        if (!s) return s;
+        return s.charAt(0).toLowerCase() + s.slice(1);
+      }
+
+function shouldInclude(rules, paramId, level) {
         var rule = rules ? rules[paramId] : null;
         if (!rule) return true;
         if (typeof rule.include_if_level_at_least === "number") return level >= rule.include_if_level_at_least;
@@ -460,79 +1596,69 @@
 
       // -------- Natural intros (no "éléments suivants") --------
       function domainIntro(domain, gender) {
-        var patientLower = (gender === "F") ? "la patiente" : "le patient";
+        // Domain lead-in used ONLY when generating multiple domains at once.
+        // It must NOT assume the first clause is a "symptom noun phrase".
+        // Keep it light and neutral to avoid awkward grammar.
         var dom = normalizeDomain(domain);
 
-        // IMPORTANT: for Douleur we intentionally DO NOT mention "douleur" here to avoid repetition
+        function lowerFirst(s) {
+          s = String(s || "").trim();
+          if (!s) return s;
+          return s.charAt(0).toLowerCase() + s.slice(1);
+        }
+
+        // IMPORTANT: for Douleur we avoid repeating "douleur" in the intro.
         if (dom === normalizeDomain("Douleur")) {
-          return (gender === "F") ? "La patiente présente" : "Le patient présente";
+          return "Sur le plan douloureux, ";
         }
 
         var map = {};
         map[normalizeDomain("Perception / cognition (attention, orientation, sensations)")] =
-          "Sur le plan cognitif, " + patientLower + " présente";
+          "Sur le plan cognitif, ";
         map[normalizeDomain("Comportement face à la santé / Apprendre (sensibilisation à la santé, bien-être-confort)")] =
-          "Concernant l’adhésion et le confort, " + patientLower + " présente";
+          "Concernant l’adhésion et le confort, ";
         map[normalizeDomain("Principes de vie (valeurs, croyances, autonomie)")] =
-          "Sur le plan de l’autonomie et de la motivation, " + patientLower + " présente";
+          "Sur le plan de l’autonomie et de la motivation, ";
         map[normalizeDomain("Communiquer")] =
-          "Sur le plan de la communication, " + patientLower + " présente";
+          "Sur le plan de la communication, ";
         map[normalizeDomain("Sécurité / protection (hygiène, état cutané, risque de chute, infection, circulation sanguine)")] =
-          "Sur le plan de la sécurité et de la prévention, " + patientLower + " présente";
-        map[normalizeDomain("Mise en danger de soi / d'autrui (violence)")] =
-          "Concernant les comportements à risque, " + patientLower + " présente";
-        map[normalizeDomain("Perception de soi (peur, espoir, etc.)")] =
-          "Sur le plan psychique, " + patientLower + " présente";
-        map[normalizeDomain("Rôles sociaux (aidant naturel, relation familiales, rôles démontrés)")] =
-          "Sur le plan social, " + patientLower + " présente";
+          "Sur le plan de la sécurité et de la prévention, ";
         map[normalizeDomain("Se mobiliser/motricité")] =
-          "Sur le plan de la mobilité, " + patientLower + " présente";
-        map[normalizeDomain("S'occuper / gérer le quotidien / potentiel d'énergie")] =
-          "Concernant l’énergie et le quotidien, " + patientLower + " présente";
-        map[normalizeDomain("Boire /Manger (aliments/liquides absorbés, digestion, métabolisme)")] =
-          "Au niveau de l’alimentation et de l’hydratation, " + patientLower + " présente";
-        map[normalizeDomain("Dormir/Se reposer")] =
-          "Concernant le sommeil, " + patientLower + " présente";
-        map[normalizeDomain("Soins corporels / habillement")] =
-          "Concernant les AVQ, " + patientLower + " présente";
+          "Concernant la mobilisation, ";
+        map[normalizeDomain("Se laver / S'habiller / Maintenir l'apparence")] =
+          "Concernant l’hygiène et l’habillement, ";
+        map[normalizeDomain("Manger / Boire")] =
+          "Concernant l’alimentation et l’hydratation, ";
+        map[normalizeDomain("Éliminer (urines, selles)")] =
+          "Concernant l’élimination, ";
+        map[normalizeDomain("Se reposer / Dormir")] =
+          "Concernant le repos et le sommeil, ";
+        map[normalizeDomain("Entretenir des relations sociales")] =
+          "Concernant les relations sociales, ";
+        map[normalizeDomain("Activités / Loisirs")] =
+          "Concernant les activités, ";
         map[normalizeDomain("Respirer")] =
-          "Sur le plan respiratoire, " + patientLower + " présente";
-        map[normalizeDomain("Eliminer (fonctionnement du système urinaire/digestif)")] =
-          "Concernant l’élimination, " + patientLower + " présente";
+          "Sur le plan respiratoire, ";
+        map[normalizeDomain("Température")] =
+          "Sur le plan thermique, ";
+        map[normalizeDomain("Peau / Téguments")] =
+          "Sur le plan cutané, ";
+        map[normalizeDomain("Traitements / Médication")] =
+          "Concernant les traitements, ";
 
-        return map[dom] || ("Concernant " + domain.toLowerCase() + ", " + patientLower + " présente");
+        if (map[dom]) return map[dom];
+
+        // Default: reuse the domain label itself, lowered to sit mid-sentence.
+        var d = String(domain || "").replace(/\s*\([^\)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
+        if (!d) return "";
+        return "Au niveau de " + lowerFirst(d) + ", ";
       }
 
       // -------- One action sentence per domain (no repetitive boilerplate per slider) --------
       function domainActionSentence(domain, gender, sev) {
-        var dom = normalizeDomain(domain);
-
-        var low = "Surveillance simple, en favorisant l’autonomie.";
-        var mid = "Une supervision régulière est mise en place, avec adaptations et transmissions si évolution.";
-        var high = "Une aide régulière est nécessaire, avec sécurisation et prévention des risques.";
-
-        var extra = "";
-
-        if (dom === normalizeDomain("Douleur")) {
-          // Avoid repeating "douleur" here too
-          extra = " Réévaluation régulière et mesures de confort adaptées.";
-        } else if (dom === normalizeDomain("Se mobiliser/motricité")) {
-          extra = " Aide aux transferts/déplacements selon tolérance, avec sécurisation de l’environnement.";
-        } else if (dom === normalizeDomain("Boire /Manger (aliments/liquides absorbés, digestion, métabolisme)")) {
-          extra = " Surveillance des apports et stimulation si besoin.";
-        } else if (dom === normalizeDomain("Sécurité / protection (hygiène, état cutané, risque de chute, infection, circulation sanguine)")) {
-          extra = " Mesures de prévention et surveillance ciblée.";
-        } else if (dom === normalizeDomain("Soins corporels / habillement")) {
-          extra = " Aide progressive aux AVQ, en respectant le rythme.";
-        } else if (dom === normalizeDomain("Perception de soi (peur, espoir, etc.)")) {
-          extra = " Soutien relationnel et réassurance selon les besoins.";
-        } else if (dom === normalizeDomain("Communiquer")) {
-          extra = " Consignes courtes, reformulation et supports si nécessaire.";
-        }
-
-        if (sev.band === "low") return low;
-        if (sev.band === "moderate") return mid + extra;
-        return high + extra;
+        // Disabled: generic action sentence often repeats and breaks narrative flow.
+        // Paragraphs should be driven by the selected slider clauses only.
+        return "";
       }
 
       // -------- Slider phrase -> CLAUSE (not full sentence), PoC style --------
@@ -601,32 +1727,143 @@
         return out;
       }
 
-      function buildDomainParagraph(domain, clauses, gender, sev) {
-        if (!clauses.length) return "";
+      
+      function hashString(s) {
+        s = String(s || "");
+        var h = 0;
+        for (var i = 0; i < s.length; i++) {
+          h = ((h << 5) - h) + s.charCodeAt(i);
+          h |= 0;
+        }
+        return h;
+      }
 
-        // Clean and join as PoC-like flow
+      function pickConnector(domain, salt) {
+        var connectors = [
+          "Par ailleurs",
+          "En complément",
+          "De plus",
+          "Dans la continuité",
+          "Au besoin"
+        ];
+        var seed = Math.abs(hashString(domain) + (salt || 0));
+        return connectors[seed % connectors.length];
+      }
+
+      function chainClausesNoIntro(domain, clauses) {
+        if (!clauses || !clauses.length) return "";
+        if (clauses.length === 1) return cap(clauses[0]) + ".";
+        if (clauses.length === 2) return cap(clauses[0]) + ", " + lowerFirst(clauses[1]) + ".";
+
+        if (clauses.length === 3) {
+          return cap(clauses[0]) + ", " + lowerFirst(clauses[1]) + "; " + lowerFirst(clauses[2]) + ".";
+        }
+
+        // 4+ : split into 2–3 sentences for flow
+        var out = cap(clauses[0]) + ", " + lowerFirst(clauses[1]) + ".";
+        var c2 = pickConnector(domain, clauses.length);
+        out += " " + c2 + ", " + lowerFirst(clauses[2]) + ", " + lowerFirst(clauses[3]) + ".";
+
+        if (clauses.length > 4) {
+          var rest = [];
+          for (var i = 4; i < clauses.length; i++) rest.push(lowerFirst(clauses[i]));
+          var c3 = pickConnector(domain + "|tail", clauses.length);
+          out += " " + c3 + ", " + rest.join(", ") + ".";
+        }
+        return out;
+      }
+
+      function chainClausesWithIntro(domain, intro, clauses) {
+        if (!clauses || !clauses.length) return "";
+        var c = clauses.slice();
+
+        // Intro is already contextual; keep the first clause as a continuation.
+        if (c.length === 1) {
+          return cap(intro + " " + lowerFirst(c[0]) + ".");
+        }
+        if (c.length === 2) {
+          return cap(intro + " " + lowerFirst(c[0]) + ", " + lowerFirst(c[1]) + ".");
+        }
+        if (c.length === 3) {
+          return cap(intro + " " + lowerFirst(c[0]) + ", " + lowerFirst(c[1]) + "; " + lowerFirst(c[2]) + ".");
+        }
+
+        // 4+
+        var out = intro + " " + lowerFirst(c[0]) + ", " + lowerFirst(c[1]) + ".";
+        var c2 = pickConnector(domain, c.length);
+        out += " " + c2 + ", " + lowerFirst(c[2]) + ", " + lowerFirst(c[3]) + ".";
+        if (c.length > 4) {
+          var rest = [];
+          for (var i = 4; i < c.length; i++) rest.push(lowerFirst(c[i]));
+          var c3 = pickConnector(domain + "|tail", c.length);
+          out += " " + c3 + ", " + rest.join(", ") + ".";
+        }
+        return cap(out);
+      }
+
+      function domainMonitoringSentence(domain, clauses, sev) {
+        if (!sev || !sev.band) return "";
+        var band = sev.band;
+        if (band === "low") return "";
+
+        // Keep this as a light optional ending (only when it really fits)
+        if (band === "moderate" && (!clauses || clauses.length < 2)) return "";
+
+        var d = normalizeDomain(domain || "");
+        var textAll = (clauses || []).join(" ").toLowerCase();
+
+        var hasPain = (d.indexOf("douleur") !== -1) || /\bdouleur\b/.test(textAll);
+        var hasMobility = /transfert|marche|déplacement|deplacement|équilibre|equilibre|chute|mobil/.test(textAll) ||
+                          /mobil|motric/.test(d);
+        var hasWc = /\bwc\b|toilette|toilettes|continence|urines?|miction|selles|transit/.test(textAll);
+
+        if (hasPain) {
+          return "Surveillance de la douleur et de l’effet des mesures mises en place, avec réévaluation selon l’évolution.";
+        }
+        if (hasMobility) {
+          return "Sécurisation et prévention des chutes maintenues, avec adaptation de l’accompagnement selon la tolérance.";
+        }
+        if (hasWc) {
+          return "Surveillance des éliminations et prévention des inconforts/risques associés, avec accompagnement adapté.";
+        }
+        return "";
+      }
+
+      function buildDomainParagraph(domain, clauses, gender, sev, includeIntro) {
+        if (!clauses || !clauses.length) return "";
+
+        // Default: includeIntro unless explicitly disabled
+        if (includeIntro === undefined) includeIntro = true;
+
+        // Clean clauses
         var cleaned = [];
         for (var i = 0; i < clauses.length; i++) {
           var s = String(clauses[i] || "").trim();
           if (!s) continue;
 
+          // Remove trailing dots; we control punctuation here
           s = s.replace(/[.]+$/g, "").trim();
-
-          // Lowercase first letter for mid-clause readability
-          s = s.charAt(0).toLowerCase() + s.slice(1);
 
           cleaned.push(s);
         }
         if (!cleaned.length) return "";
 
-        var intro = domainIntro(domain, gender); // ends with "présente"
-        var action = domainActionSentence(domain, gender, sev);
+        // Single-domain output: no intro, slightly more narrative chaining.
+        if (!includeIntro) {
+          var paragraph = chainClausesNoIntro(domain, cleaned);
+          var monitor = domainMonitoringSentence(domain, cleaned, sev);
+          if (monitor) paragraph += " " + monitor;
+          return cap(paragraph.trim());
+        }
 
-        // Example: "Sur le plan de la mobilité, le patient présente une mobilité réduite, ... . Une supervision..."
-        var paragraph = intro + " " + cleaned.join(", ") + ".";
-        if (action) paragraph += " " + action;
+        // Multi-domain output: add a light intro and chain clauses without awkward grammar assumptions.
+        var intro = domainIntro(domain, gender);
+        var paragraph2 = chainClausesWithIntro(domain, intro, cleaned);
 
-        return cap(paragraph);
+        var monitor2 = domainMonitoringSentence(domain, cleaned, sev);
+        if (monitor2) paragraph2 += " " + monitor2;
+
+        return cap(String(paragraph2 || "").trim());
       }
 
       function generateTextNatural(stateForGen, data, options) {
@@ -667,7 +1904,7 @@
           if (!items.length) continue;
 
           var sev = inferSeverity(levelByDomain[dom] || []);
-          var p = buildDomainParagraph(dom, items, gender, sev);
+          var p = buildDomainParagraph(dom, items, gender, sev, !selectedDomain);
           paragraphs.push(p.trim());
         }
 
